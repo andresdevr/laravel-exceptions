@@ -1,0 +1,81 @@
+<?php
+
+use Andresdevr\LaravelExceptions\Error;
+use Andresdevr\LaravelExceptions\Events\ErrorWasFixed;
+use Andresdevr\LaravelExceptions\Events\ErrorWasThrown;
+use Andresdevr\LaravelExceptions\Events\ExceptionWasFixed;
+use Andresdevr\LaravelExceptions\Events\NewExceptionWasThrown;
+use Andresdevr\LaravelExceptions\Exception;
+
+return [
+	
+    'route-prefix' => (string) '',
+
+    
+    'middlewares' => [
+        //    
+    ],
+
+    'models' => [
+
+        'exception' => (string) Exception::class,
+
+        'error' => (string) Error::class
+    ],
+    
+    'database' => [
+        'prefix' => (string) '',
+        'tables' => [
+            'exception' => (string) 'exceptions',
+            'error' => (string) 'errors'
+        ]   
+    ],
+
+    'events' => [
+        'error-was-fixed' => [
+            'class' => ErrorWasFixed::class,
+            'webhooks' => [
+                //
+            ],
+            'broadcast' => [
+                'private' => (bool) true,
+                'channel' => (string) 'error-was-fixed-channel'
+            ],
+        ],
+        'error-was-thrown' => [
+            'class' => ErrorWasThrown::class,
+            'webhooks' => [
+                //
+            ],
+            'broadcast' => [
+                'private' => (bool) true,
+                'channel' => (string) 'error-was-thrown-channel'
+            ],
+        ],
+        'exception-was-fixed' => [
+            'class' => ExceptionWasFixed::class,
+            'webhooks' => [
+                //
+            ],
+            'broadcast' => [
+                'private' => (bool) true,
+                'channel' => (string) 'exception-was-fixed-channel'
+            ],
+        ],
+        'new-exception-was-thrown' => [
+            'class' => NewExceptionWasThrown::class,
+            'webhooks' => [
+                //
+            ],
+            'broadcast' => [
+                'private' => (bool) true,
+                'channel' => (string) 'new-exception-was-thrown-channel'
+            ],
+        ],
+    ],
+
+    'webhook' => (bool) false,
+
+    'debug' => (bool) true
+
+];

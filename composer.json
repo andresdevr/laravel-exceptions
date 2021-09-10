@@ -1,0 +1,19 @@
+{
+    "name": "andresdevr/laravel-exceptions",
+    "description": "This packages provides a way to see an historial of errors tracks",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Andresdevr\\LaravelExceptions\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "andresdevr",
+            "email": "andres22.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "orchestra/testbench": "^6.21"
+    }
+}
