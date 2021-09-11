@@ -14,17 +14,24 @@ class CreateSolutionsTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.error'), function (Blueprint $table) {
+        Schema::create(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.solution'), function (Blueprint $table) {
 
-            $exceptionsTable = config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.exception');
-            $exceptionsKey = app(config('laravel-exceptions.models.exception'))->getKeyName();
-            $exceptionReference = (string) Str::of($exceptionsTable)->singular()->append('_')->append($exceptionsKey);
+            $errorsTable = config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.error');
+            $errorsKey = app(config('laravel-exceptions.models.error'))->getKeyName();
+            $errorReference = (string) Str::of($errorsTable)->singular()->append('_')->append($errorsKey);
 
             $table->string('id')->unique();
-            $table->string($exceptionReference);
-            $table->foreign($exceptionReference)->references($exceptionsKey)->on($exceptionsTable)->onDelete('cascade');
+            $table->string($errorReference);
+            $table->foreign($errorReference)->references($errorsKey)->on($errorsTable)->onDelete('cascade');
             $table->string('user_id')->nullable();
-            $table->longText('serialized_error');
+            $table->text('markdown_explanation');
+            $table->enum('can_be_replicated', [
+                'yes',
+                'no',
+                'maybe'
+            ]);
+            $table->string('commit_track')->nullable();
+            $table->json('extra_data')->nullable();
             $table->timestamps();
         });
     }
@@ -36,6 +43,6 @@ class CreateSolutionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.error'));
+        Schema::dropIfExists(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.solution'));
     }
 }

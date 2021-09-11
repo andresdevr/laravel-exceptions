@@ -3,14 +3,15 @@
 namespace Andresdevr\LaravelExceptions;
 
 use Andresdevr\LaravelExceptions\Providers\EventServiceProvider;
-use Andresdevr\LaravelExceptions\Error;
-use Andresdevr\LaravelExceptions\Exception;
 use Andresdevr\LaravelExceptions\Interfaces\ErrorInterface;
 use Andresdevr\LaravelExceptions\Interfaces\ErrorsInterface;
 use Andresdevr\LaravelExceptions\Interfaces\ExceptionInterface;
 use Andresdevr\LaravelExceptions\Interfaces\ExceptionsInterface;
 use Andresdevr\LaravelExceptions\Interfaces\SolutionInterface;
 use Andresdevr\LaravelExceptions\Interfaces\SolutionsInterface;
+use Andresdevr\LaravelExceptions\Models\Error;
+use Andresdevr\LaravelExceptions\Models\Exception;
+use Andresdevr\LaravelExceptions\Models\Solution;
 use Andresdevr\LaravelExceptions\Observers\UuidOberser;
 use Andresdevr\LaravelExceptions\Repositories\ErrorRepository;
 use Andresdevr\LaravelExceptions\Repositories\ExceptionRepository;
@@ -31,8 +32,10 @@ class ApprovalsServiceProvider extends ServiceProvider
         {
             $this->publishConfiguration();
         }
+        $this->loadMigrations();
         $this->observeModelsWithUuid();
         $this->registerMiddlewares();
+        $this->registerRoutes();
     }
 
     /**
@@ -60,6 +63,16 @@ class ApprovalsServiceProvider extends ServiceProvider
         ], 'exceptions-config');
     }
 
+    /**
+     * Load migrations
+     * 
+     * @return void
+     */
+    private function loadMigrations()
+    {
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+    }
+    
     /**
      * Observe the models with uuid
      * 
@@ -104,5 +117,15 @@ class ApprovalsServiceProvider extends ServiceProvider
             $this->app->bind($interface, $bind);
         }
 
+    }
+
+    /**
+     * Register routes
+     * 
+     * @return void
+     */
+    private function registerRoutes()
+    {
+        $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
     }
 }
