@@ -19,7 +19,7 @@ class SolutionController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  \App\Repositories\SolutionsInterface  $solutions
+     * @param  \Andresdevr\LaravelExceptions\Repositories\SolutionsInterface  $solutions
      * @return void
      */
     public function __construct(SolutionsInterface $solutions)

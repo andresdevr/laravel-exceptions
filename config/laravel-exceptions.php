@@ -1,12 +1,13 @@
 <?php
 
-use Andresdevr\LaravelExceptions\Error;
 use Andresdevr\LaravelExceptions\Events\ErrorWasFixed;
 use Andresdevr\LaravelExceptions\Events\ErrorWasThrown;
 use Andresdevr\LaravelExceptions\Events\ExceptionWasFixed;
 use Andresdevr\LaravelExceptions\Events\NewExceptionWasThrown;
-use Andresdevr\LaravelExceptions\Exception;
-use App\Http\Middleware\ChangeDebugExceptionConfiguration;
+use Andresdevr\LaravelExceptions\Models\Solution;
+use Andresdevr\LaravelExceptions\Models\Error;
+use Andresdevr\LaravelExceptions\Models\Exception;
+use Andresdevr\LaravelExceptions\Http\Middleware\ChangeDebugExceptionConfiguration;
 
 return [
 	
@@ -30,7 +31,7 @@ return [
     ],
     
     'database' => [
-        'prefix' => (string) '',
+        'prefix' => (string) 'exceptions_',
         'tables' => [
             'exception' => (string) 'exceptions',
             'error' => (string) 'errors',

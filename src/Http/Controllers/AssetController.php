@@ -14,7 +14,7 @@ class AssetController extends Controller
      */
     public function js()
     {
-        return $this->getFile(__DIR__ . '/../public/js/exceptions.bundle.js', [
+        return $this->getFile(__DIR__ . '/../../../public/js/exceptions.bundle.js', [
             'Content-Type' => 'application/javascript'
         ]);
     }
@@ -26,7 +26,7 @@ class AssetController extends Controller
      */
     public function css()
     {
-        return $this->getFile(__DIR__ . '/../public/css/exceptions.bundle.css', [
+        return $this->getFile(__DIR__ . '/../../../public/css/exceptions.bundle.css', [
             'Content-Type' => 'text/css; charset=utf-8'
         ]);
     }

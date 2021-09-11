@@ -19,7 +19,7 @@ class ErrorController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @param  \App\Repositories\ErrorsInterface  $errors
+     * @param  \Andresdevr\LaravelExceptions\Repositories\ErrorsInterface  $errors
      * @return void
      */
     public function __construct(ErrorsInterface $errors)

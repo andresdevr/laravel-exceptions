@@ -1,6 +1,6 @@
 <?php
 
-namespace Andresdevr\LaravelExceptions\Trais;
+namespace Andresdevr\LaravelExceptions\Traits;
 
 trait HasExceptions
 {

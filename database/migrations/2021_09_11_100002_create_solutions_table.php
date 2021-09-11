@@ -15,16 +15,10 @@ class CreateSolutionsTable extends Migration
     public function up()
     {
         Schema::create(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.solution'), function (Blueprint $table) {
-
-            $errorsTable = config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.error');
-            $errorsKey = app(config('laravel-exceptions.models.error'))->getKeyName();
-            $errorReference = (string) Str::of($errorsTable)->singular()->append('_')->append($errorsKey);
-
             $table->string('id')->unique();
-            $table->string($errorReference);
-            $table->foreign($errorReference)->references($errorsKey)->on($errorsTable)->onDelete('cascade');
-            $table->string('user_id')->nullable();
-            $table->text('markdown_explanation');
+            $table->string('error_id');
+            $table->foreign('error_id')->references('id')->on(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.error'))->onDelete('cascade');
+            $table->text('markdown_explanation')->nullable();
             $table->enum('can_be_replicated', [
                 'yes',
                 'no',

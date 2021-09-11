@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
 
-class UuidOberser
+class UuidObserver
 {
     /**
      * Handle the model "creating" event.
@@ -16,6 +16,6 @@ class UuidOberser
      */
 	public function creating(Model $model)
     {
-        $model->{$model->getKeyName()} = Str::uuid();
+        $model->{$model->getKeyName()} = (string) Str::uuid();
     }
 }

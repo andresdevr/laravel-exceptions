@@ -7,10 +7,10 @@ use Andresdevr\LaravelExceptions\Events\ErrorWasFixed;
 use Andresdevr\LaravelExceptions\Events\ErrorWasThrown;
 use Andresdevr\LaravelExceptions\Events\ExceptionWasFixed;
 use Andresdevr\LaravelExceptions\Events\NewExceptionWasThrown;
-use App\Listeners\SendErrorFixed;
-use App\Listeners\SendErrorThrown;
-use App\Listeners\SendExceptionFixed;
-use App\Listeners\SendExceptionThrown;
+use Andresdevr\LaravelExceptions\SendErrorFixed;
+use Andresdevr\LaravelExceptions\SendErrorThrown;
+use Andresdevr\LaravelExceptions\SendExceptionFixed;
+use Andresdevr\LaravelExceptions\SendExceptionThrown;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider

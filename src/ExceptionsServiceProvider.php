@@ -12,14 +12,15 @@ use Andresdevr\LaravelExceptions\Interfaces\SolutionsInterface;
 use Andresdevr\LaravelExceptions\Models\Error;
 use Andresdevr\LaravelExceptions\Models\Exception;
 use Andresdevr\LaravelExceptions\Models\Solution;
-use Andresdevr\LaravelExceptions\Observers\UuidOberser;
+use Andresdevr\LaravelExceptions\Observers\UuidObserver;
 use Andresdevr\LaravelExceptions\Repositories\ErrorRepository;
 use Andresdevr\LaravelExceptions\Repositories\ExceptionRepository;
 use Andresdevr\LaravelExceptions\Repositories\SolutionRepository;
-use App\Http\Middleware\ChangeDebugExceptionConfiguration;
+use Andresdevr\LaravelExceptions\Http\Middleware\ChangeDebugExceptionConfiguration;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
-class ApprovalsServiceProvider extends ServiceProvider
+class ExceptionsServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -78,11 +79,11 @@ class ApprovalsServiceProvider extends ServiceProvider
      * 
      * @return void 
      */
-    private function observeMOdelsWithUuid() : void
+    private function observeModelsWithUuid() : void
     {
-        Exception::observe(UuidOberser::class);
-        Error::observe(UuidOberser::class);
-        Solution::observe(UuidOberser::class);
+        Exception::observe(UuidObserver::class);
+        Error::observe(UuidObserver::class);
+        Solution::observe(UuidObserver::class);
     }
 
     /**

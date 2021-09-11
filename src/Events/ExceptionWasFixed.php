@@ -39,6 +39,8 @@ class ExceptionWasFixed
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return config('laravel-exceptions.events.exception-was-fixed.broadcast.private') ? 
+            new PrivateChannel(config('laravel-exceptions.events.exception-was-fixed.broadcast.channel')) : 
+            new Channel(config('laravel-exceptions.events.exception-was-fixed.broadcast.channel'));
     }
 }

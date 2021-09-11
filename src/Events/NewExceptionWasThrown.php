@@ -39,6 +39,8 @@ class NewExceptionWasThrown implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return config('laravel-exceptions.events.new-exception-was-thrown.broadcast.private') ? 
+            new PrivateChannel(config('laravel-exceptions.events.new-exception-was-thrown.broadcast.channel')) : 
+            new Channel(config('laravel-exceptions.events.new-exception-was-thrown.broadcast.channel'));
     }
 }

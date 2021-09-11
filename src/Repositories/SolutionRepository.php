@@ -2,9 +2,9 @@
 
 namespace Andresdevr\LaravelExceptions\Repositories;
 
-use Andresdevr\LaravelExceptions\Interfaces\ExceptionsInterface;
+use Andresdevr\LaravelExceptions\Interfaces\SolutionsInterface;
 
-class SolutionRepository implements ExceptionsInterface
+class SolutionRepository implements SolutionsInterface
 {
     
 }

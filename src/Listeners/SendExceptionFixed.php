@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Listeners;
+namespace Andresdevr\LaravelExceptions\Listeners;
 
 use Andresdevr\LaravelExceptions\Classes\SendRequestToWebhook;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -26,7 +26,7 @@ class SendExceptionFixed
      */
     public function handle($event)
     {
-        if('laravel-exceptions.webhook')
+        if(config('laravel-exceptions.webhook'))
         {
             $this->sendRequest($event);
         }

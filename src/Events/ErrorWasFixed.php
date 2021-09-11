@@ -39,8 +39,8 @@ class ErrorWasFixed implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return config('laravel-exceptions.events,error-was-fixed.broadcast.private') ? 
+        return config('laravel-exceptions.events.error-was-fixed.broadcast.private') ? 
             new PrivateChannel(config('laravel-exceptions.events.error-was-fixed.broadcast.channel')) : 
-            new PresenceChannel(config('laravel-exceptions.events.error-was-fixed.broadcast.channel'));
+            new Channel(config('laravel-exceptions.events.error-was-fixed.broadcast.channel'));
     }
 }

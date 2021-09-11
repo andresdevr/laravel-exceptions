@@ -1,5 +1,11 @@
 {
     "name": "andresdevr/laravel-exceptions",
+    "keywords": [
+        "laravel",
+        "exceptions",
+        "bug tracker",
+        "reports"
+    ],
     "description": "This packages provides a way to see an historial of errors tracks",
     "license": "MIT",
     "autoload": {
@@ -7,13 +13,23 @@
             "Andresdevr\\LaravelExceptions\\": "src/"
         }
     },
+    
     "authors": [
         {
             "name": "andresdevr",
-            "email": "andres22.dev@gmail.com"
+            "email": "andres22.dev@gmail.com",
+            "homepage": "https://github.com/andresdevr"
         }
     ],
-    "require": {
+    "require-dev": {
         "orchestra/testbench": "^6.21"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Andresdevr\\LaravelExceptions\\ExceptionsServiceProvider"
+            ],
+            "aliases": []
+        }
     }
 }
