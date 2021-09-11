@@ -33,7 +33,8 @@ return [
         'prefix' => (string) '',
         'tables' => [
             'exception' => (string) 'exceptions',
-            'error' => (string) 'errors'
+            'error' => (string) 'errors',
+            'solution' => (string) 'solutions'
         ]   
     ],
 

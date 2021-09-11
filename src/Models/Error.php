@@ -16,7 +16,7 @@ class Error extends Model implements ErrorInterface
      */
     public function getTable()
     {
-        return config('exceptions.database.prefix') . config('exceptions.database.tables.error') ?? parent::getTable();
+        return config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.error') ?? parent::getTable();
     }
 
     /**
@@ -26,7 +26,7 @@ class Error extends Model implements ErrorInterface
      */
     public function exception() : BelongsTo
     {
-        return $this->belongsTo(config('exceptions.models.exception'));
+        return $this->belongsTo(config('laravel-exceptions.models.exception'));
     }
 
     /**
@@ -36,6 +36,6 @@ class Error extends Model implements ErrorInterface
      */
     public function solution() : HasOne
     {
-        return $this->hasOne(config('exceptions.models.solution'));
+        return $this->hasOne(config('laravel-exceptions.models.solution'));
     }
 }

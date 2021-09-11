@@ -17,7 +17,7 @@ class Exception extends Model implements ExceptionInterface
      */
     public function getTable()
     {
-        return config('exceptions.database.prefix') . config('exceptions.database.tables.error') ?? parent::getTable();
+        return config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.error') ?? parent::getTable();
     }
 
     /**
@@ -27,7 +27,7 @@ class Exception extends Model implements ExceptionInterface
      */
     public function errors() : HasMany
     {
-        return $this->hasMany(config('exceptions.models.error'));
+        return $this->hasMany(config('laravel-exceptions.models.error'));
     }
 
     /**
@@ -37,6 +37,6 @@ class Exception extends Model implements ExceptionInterface
      */
     public function solutions() : HasManyThrough
     {
-        return $this->hasManyThrough(config('exceptions.models.solution'), config('exceptions.models.error'));
+        return $this->hasManyThrough(config('laravel-exceptions.models.solution'), config('laravel-exceptions.models.error'));
     }
 }

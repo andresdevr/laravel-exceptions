@@ -17,7 +17,7 @@ class Solution extends Model implements SolutionInterface
      */
     public function getTable()
     {
-        return config('exceptions.database.prefix') . config('exceptions.database.tables.solution') ?? parent::getTable();
+        return config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.solution') ?? parent::getTable();
     }
 
     /**
@@ -27,6 +27,6 @@ class Solution extends Model implements SolutionInterface
      */
     public function error() : BelongsTo
     {
-        return $this->belongsTo(config('exceptions.models.error'));
+        return $this->belongsTo(config('laravel-exceptions.models.error'));
     }
 }
