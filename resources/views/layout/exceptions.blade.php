@@ -11,7 +11,6 @@
     <script src="{{ route(config('laravel-exceptions.route-prefix-name') . 'exceptions.js') }}" defer></script>
 </head>
 <body>
-    dafsd
     {{ $slot }}
 </body>
 </html>

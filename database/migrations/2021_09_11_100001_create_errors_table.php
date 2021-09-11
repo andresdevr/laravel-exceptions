@@ -20,6 +20,7 @@ class CreateErrorsTable extends Migration
             $table->foreign('exception_id')->references('id')->on(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.exception'))->onDelete('cascade');
             $table->string('user_id')->nullable();
             $table->longText('serialized_error');
+            $table->string('commit')->nullable();
             $table->timestamps();
         });
     }

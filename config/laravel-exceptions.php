@@ -84,6 +84,8 @@ return [
 
     'webhook' => (bool) false,
 
-    'debug' => (bool) true
+    'debug' => (bool) true,
+
+    'git' => (bool) true
 
 ];

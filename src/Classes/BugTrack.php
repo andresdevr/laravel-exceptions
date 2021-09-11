@@ -18,6 +18,13 @@ class BugTrack
     public $exception;
 
     /**
+     * Git command
+     * 
+     * @var string
+     */
+    public const GITCOMMAND = "git log -n 1 --pretty=format:%H -- ";
+
+    /**
      * The protected constructor
      * 
      * @param \Throwable $exception
@@ -80,7 +87,8 @@ class BugTrack
     {
         return new Error([
             'serialized_error' => $this->serializedError(),
-            'user_id' => Auth::check() ? Auth::id() : null
+            'user_id' => Auth::check() ? Auth::id() : null,
+            'commit' => config('laravel-exceptions.git') ? $this->getCurrentCommit() : null
         ]);
     }
 
@@ -92,5 +100,17 @@ class BugTrack
     protected function serializedError() : string
     {
         return serialize($this->exception);
+    }
+
+    /**
+     * Get the last commit  of the error file
+     * 
+     * @return string|null
+     */
+    protected function getCurrentCommit()
+    {
+        return (string) Str::of(exec(self::GITCOMMAND . $this->exception->getFile()))
+                            ->trim()
+                            ->ascii();
     }
 }
