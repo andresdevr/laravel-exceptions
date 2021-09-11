@@ -34,7 +34,7 @@ class ExceptionController extends Controller
      */
     public function index()
     {
-        //
+        return view('exceptions::exceptions.index');
     }
 
 
@@ -45,18 +45,6 @@ class ExceptionController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(ExceptionInterface $exception)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param \Andresdevr\LaravelExceptions\Interfaces\ExceptionInterface $exception
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, ExceptionInterface $exception)
     {
         //
     }

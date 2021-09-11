@@ -17,6 +17,7 @@ use Andresdevr\LaravelExceptions\Repositories\ErrorRepository;
 use Andresdevr\LaravelExceptions\Repositories\ExceptionRepository;
 use Andresdevr\LaravelExceptions\Repositories\SolutionRepository;
 use Andresdevr\LaravelExceptions\Http\Middleware\ChangeDebugExceptionConfiguration;
+use Andresdevr\LaravelExceptions\View\Components\ExceptionsLayout;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
@@ -32,11 +33,13 @@ class ExceptionsServiceProvider extends ServiceProvider
         if($this->app->runningInConsole()) 
         {
             $this->publishConfiguration();
+            $this->publishViews();
         }
         $this->loadMigrations();
         $this->observeModelsWithUuid();
         $this->registerMiddlewares();
         $this->registerRoutes();
+        $this->registerViews();
     }
 
     /**
@@ -62,6 +65,20 @@ class ExceptionsServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../config/laravel-exceptions.php' => config_path('laravel-exceptions.php'),
         ], 'exceptions-config');
+    }
+
+    /**
+     * Publish the views
+     * 
+     * @return void
+     */
+    private function publishViews() : void
+    {
+        //views
+        $this->publishes([
+            __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-exceptions'),
+            __DIR__.'/View/Layout' => app_path('View/Layout')
+        ], 'exceptions-views');
     }
 
     /**
@@ -128,5 +145,19 @@ class ExceptionsServiceProvider extends ServiceProvider
     private function registerRoutes()
     {
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
+    }
+
+    /**
+     * Register views
+     * 
+     * @return void
+     */
+    public function registerViews()
+    {
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'exceptions');
+
+        $this->loadViewComponentsAs('exceptions', [
+            ExceptionsLayout::class,
+        ]);
     }
 }

@@ -15,8 +15,8 @@ use Throwable;
  * 
  * @var string $id The primary key attribute
  * @var string $user_id The reference to the user how throw the error
- * @var string serialized_error The error in estring format
- * @var \Throwable unserialized_error The unsereailized \Exception
+ * @var string $serialized_error The error in estring format
+ * @var \Throwable $unserialized_error The unsereailized \Exception
  */
 class Error extends Model implements ErrorInterface
 {

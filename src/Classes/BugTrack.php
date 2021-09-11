@@ -23,7 +23,7 @@ class BugTrack
      * @param \Throwable $exception
      * @return void
      */
-    protected function __construct(Throwable $exception) : void
+    protected function __construct(Throwable $exception)
     {
         $this->exception = $exception;
     }

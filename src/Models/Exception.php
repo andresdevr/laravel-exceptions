@@ -81,6 +81,6 @@ class Exception extends Model implements ExceptionInterface
      */
     public function getFullMessageAttribute($value)
     {
-        return is_null($value) ? $this->attributes['error'] : $value;
+        return is_null($value) ? $this->attributes['message'] : $value;
     }
 }

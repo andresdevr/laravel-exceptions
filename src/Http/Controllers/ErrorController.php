@@ -5,6 +5,7 @@ namespace Andresdevr\LaravelExceptions\Http\Controllers;
 use Andresdevr\LaravelExceptions\Interfaces\ErrorInterface;
 use Andresdevr\LaravelExceptions\Interfaces\ExceptionInterface;
 use Andresdevr\LaravelExceptions\Interfaces\ErrorsInterface;
+use Andresdevr\LaravelExceptions\Models\Error;
 use Illuminate\Http\Request;
 
 class ErrorController extends Controller
