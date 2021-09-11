@@ -1,11 +1,13 @@
 <?php
 
-namespace Andresdevr\LaravelExceptions;
+namespace Andresdevr\LaravelExceptions\Models;
 
+use Andresdevr\LaravelExceptions\Interfaces\ErrorInterface;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Error extends Model
+class Error extends Model implements ErrorInterface
 {
     /**
      * Get the table associated with the model.
@@ -24,6 +26,16 @@ class Error extends Model
      */
     public function exception() : BelongsTo
     {
-        return $this->belongsTo(config(''));
+        return $this->belongsTo(config('exceptions.models.exception'));
+    }
+
+    /**
+     * Relationship with solution
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function solution() : HasOne
+    {
+        return $this->hasOne(config('exceptions.models.solution'));
     }
 }

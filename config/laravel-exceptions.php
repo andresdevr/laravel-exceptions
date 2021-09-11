@@ -6,21 +6,27 @@ use Andresdevr\LaravelExceptions\Events\ErrorWasThrown;
 use Andresdevr\LaravelExceptions\Events\ExceptionWasFixed;
 use Andresdevr\LaravelExceptions\Events\NewExceptionWasThrown;
 use Andresdevr\LaravelExceptions\Exception;
+use App\Http\Middleware\ChangeDebugExceptionConfiguration;
 
 return [
 	
-    'route-prefix' => (string) '',
+    'route-prefix-route' => (string) '',
+
+    'route-prefix-name' => (string) '',
 
     
     'middlewares' => [
-        //    
+        ChangeDebugExceptionConfiguration::class,
+        //
     ],
 
     'models' => [
 
         'exception' => (string) Exception::class,
 
-        'error' => (string) Error::class
+        'error' => (string) Error::class,
+
+        'solution' => (string) Solution::class
     ],
     
     'database' => [

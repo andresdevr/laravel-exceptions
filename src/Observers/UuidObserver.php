@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class UuidOberser
 {
     /**
-     * Handle the User "created" event.
+     * Handle the model "creating" event.
      *
      * @param  \Illuminate\Database\Eloquent\Model $model
      * @return void

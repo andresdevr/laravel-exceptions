@@ -2,6 +2,8 @@
 
 namespace Andresdevr\LaravelExceptions\Classes;
 
+use Illuminate\Support\Facades\Http;
+
 class SendRequestToWebhook
 {
     /**
@@ -25,7 +27,7 @@ class SendRequestToWebhook
      * @param mixed $data
      * @return void
      */
-    public function __construct(string $url, $data = null)
+    public function __construct(string $url, $data = null) : void
     {
         $this->url = $url;
         $this->data = $data;   
@@ -38,8 +40,20 @@ class SendRequestToWebhook
      * @param mixed $data
      * @return \Andresdevr\LaravelExceptions\Classes\SendRequestToWebhook
      */
-    public static function instance(string $url, $data = null)
+    public static function instance(string $url, $data = null) : self
     {
         return new self($url, $data);
+    }
+
+    /**
+     * Send the request
+     * 
+     * @return void
+     */
+    public function send() : void
+    {
+        Http::post($this->url, [
+            "data" => $this->data
+        ]);
     }
 }

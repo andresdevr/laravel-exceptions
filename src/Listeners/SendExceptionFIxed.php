@@ -18,7 +18,7 @@ class SendExceptionFixed
         //
     }
 
-    /**
+   /**
      * Handle the event.
      *
      * @param  object  $event
@@ -26,9 +26,26 @@ class SendExceptionFixed
      */
     public function handle($event)
     {
-        SendRequestToWebhook::instance(
-            config(),
-            $event->exception
-        );
+        if('laravel-exceptions.webhook')
+        {
+            $this->sendRequest($event);
+        }
     }
+    
+    /**
+     * Handle the send request
+     * 
+     * @param object $event
+     * @return void
+     */
+    private function sendRequest($event)
+    {
+        foreach(config('laravel-exceptions.events.error-was-fixed.webhooks') as $webhook)
+        {
+            SendRequestToWebhook::instance(
+                $webhook,
+                $event->error
+            )->send();
+        }
+    } 
 }
