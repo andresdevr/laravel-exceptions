@@ -6,19 +6,19 @@
                     <label class="mr-4 text-purple-exception-800 mb-5" for="searc">
                         Search
                     </label>
-                    <input type="text" class="border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md" placeholder="'message, code, file, line..." />
+                    <input type="text" v-model="search" class="border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md" placeholder="'message, code, file, line..." />
                 </div>
                 <div class="col-span-3">
                     <label class="mr-4 text-purple-exception-800 mb-5" for="start_date">
                         Start date
                     </label>
-                    <input type="date" class="border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md"/>
+                    <input type="date" v-model="startDate" class="border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md"/>
                 </div>
                 <div class="col-span-3">
                     <label class="mr-4 text-purple-exception-800 mb-5" for="end_date">
                         End date'
                     </label>
-                    <input type="date" class="border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md"/>
+                    <input type="date" v-model="endDate" class="border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md"/>
                 </div>
             </div>
         </div>
@@ -30,32 +30,80 @@
                         <tr class="text-md font-semibold tracking-wide text-left text-purple-exception-800 capitalize border-b bg-purple-exception-300 ">
                             <th class="border border-purple-exception-400">
                                 <button class="px-4 py-2 w-full h-full text-left">
-                                    ID &#8595;
+                                    ID 
+                                    <span v-if="orderBy == 'id'">
+                                        <span v-if="sort == 'desc'">
+                                            &#8595;
+                                        </span>
+                                        <span v-if="sort == 'asc'">
+                                            &#8593;
+                                        </span>
+                                    </span>
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
                                 <button class="px-4 py-2 w-full h-full text-left">
-                                    Error Message &#8593;
+                                    Error Message 
+                                    <span v-if="orderBy == 'message'">
+                                        <span v-if="sort == 'desc'">
+                                            &#8595;
+                                        </span>
+                                        <span v-if="sort == 'asc'">
+                                            &#8593;
+                                        </span>
+                                    </span>
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
                                 <button class="px-4 py-2 w-full h-full text-left">
                                     File
+                                    <span v-if="orderBy == 'file'">
+                                        <span v-if="sort == 'desc'">
+                                            &#8595;
+                                        </span>
+                                        <span v-if="sort == 'asc'">
+                                            &#8593;
+                                        </span>
+                                    </span>
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
                                 <button class="px-4 py-2 w-full h-full text-left">
                                     Line
+                                    <span v-if="orderBy == 'line'">
+                                        <span v-if="sort == 'desc'">
+                                            &#8595;
+                                        </span>
+                                        <span v-if="sort == 'asc'">
+                                            &#8593;
+                                        </span>
+                                    </span>
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
                                 <button class="px-4 py-2 w-full h-full text-left">
                                     Solutions
+                                    <span v-if="orderBy == 'solutions'">
+                                        <span v-if="sort == 'desc'">
+                                            &#8595;
+                                        </span>
+                                        <span v-if="sort == 'asc'">
+                                            &#8593;
+                                        </span>
+                                    </span>
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
                                 <button class="px-4 py-2 w-full h-full text-left">
                                     Thrown at
+                                    <span v-if="orderBy == 'created_at'">
+                                        <span v-if="sort == 'desc'">
+                                            &#8595;
+                                        </span>
+                                        <span v-if="sort == 'asc'">
+                                            &#8593;
+                                        </span>
+                                    </span>
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
@@ -83,7 +131,7 @@
                                 {{ exception.solutions_count }}
                             </td>
                             <td class="px-4 py-3 border">
-                                {{ exception.solutions_created_at }}
+                                {{ exception.created_at }}
                             </td>
                             <td class="px-4 border">
                                 <button class="px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
@@ -95,13 +143,13 @@
                 </table>
                 <div class="px-4 py-2 bg-purple-exception-200 flex justify-start md:justify-center lg:justify-end">
                     <div class="flex">
-                        <button class="px-4 py-1 rounded-l-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
+                        <button v-if="page != 1" @click="page--" class="px-4 py-1 rounded-l-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
                             &#60;
                         </button>
-                        <button class="px-4 py-1 text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-300 align-middle">
-                            2
+                        <button v-for="p in pages" @click="page = p" :class="{'text-white': page == p, 'text-purple-exception-700': page != p, 'bg-purple-exception-700': page == p, 'rounded-r-md': page == lastPage && p == lastPage, 'rounded-l-md': p == 1 && page == 1}" class="px-4 py-1 text-sm font-medium border focus:outline-none focus:ring transition border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-300 align-middle">
+                            {{ p }}
                         </button>
-                        <button class="px-4 py-1 rounded-r-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-300 align-middle">
+                        <button v-if="page != lastPage" @click="page++" class="px-4 py-1 rounded-r-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-300 align-middle">
                             &#62;
                         </button>
                     </div>
@@ -135,11 +183,24 @@ export default {
             total: 1
         }       
     },
+    computed: {
+        pages: function() {
+            let first = (this.page - 3 >= 1) ? this.page - 3 : 1;
+            let last = (this.page + 3 <= this.lastPage) ? this.page + 3 : this.lastPage;
+
+            return Array.from({length: last - first + 1}, (_, i) => i + first);
+            
+        }
+    },
     methods: {
-        getExceptions: function() {
+        getExceptions: async function() {
             this.isLoading = true;
-            axios.get(this.indexRoute).then(function(response) {
-                console.log(response.data.data);
+
+            try
+            {
+                let response = await axios.get(this.indexRoute);
+                this.isLoading = true;
+                this.exceptions = response.data.data;
                 this.exceptions = response.data.data;
                 this.page = response.data.current_page;
                 this.lastPage = response.data.last_page;
@@ -147,12 +208,15 @@ export default {
                 this.to = response.data.to;
                 this.total = response.data.total;
                 this.perPage = response.data.per_page;
-                console.log(this.exceptions);
-                console.log(546);
-
-            }).catch(function(error) {
-
-            });
+            }
+            catch(error) 
+            {
+                console.log(error);
+            }
+            finally 
+            {
+                this.isLoading = false;
+            }
         }
     },
     mounted() {

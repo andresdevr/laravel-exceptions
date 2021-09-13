@@ -18,6 +18,6 @@ class ExceptionRepository implements ExceptionsInterface
     {
         
 
-        return Exception::paginate();
+        return Exception::withCount('solutions')->paginate();
     }
 }
