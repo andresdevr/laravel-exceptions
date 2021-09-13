@@ -16,7 +16,7 @@
                 </div>
                 <div class="col-span-3">
                     <label class="mr-4 text-purple-exception-800 mb-5" for="end_date">
-                        End date'
+                        End date
                     </label>
                     <input type="date" v-model="endDate" class="border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md"/>
                 </div>
@@ -111,7 +111,7 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white border border-purple-exception-400">
+                    <tbody class="bg-white border border-purple-exception-400" v-if="exceptions.length">
                         <tr class="text-gray-700" v-for="exception in exceptions" :key="exception.id">
                             <td class="px-4 py-3 border">
                                 {{ exception.id }}
@@ -142,6 +142,16 @@
                             </td>
                         </tr>
                     </tbody>
+                    <tbody class="bg-purple-exception-400 border border-purple-exception-400" v-else>
+                        <tr class="">
+                            <td colspan="7">
+                                <div class="flex justify-center py-10 text-lg text-purple-900">
+                                    No Exceptions Found
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+
                 </table>
                 <div class="px-4 py-2 bg-purple-exception-200 flex justify-start md:justify-center lg:justify-end">
                     <div class="flex">

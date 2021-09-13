@@ -2247,6 +2247,16 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     indexRoute: {
@@ -2350,7 +2360,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     order: function order(attribute) {
       if (this.orderBy == attribute) {
         this.sort = this.sort == 'desc' ? 'asc' : 'desc';
-        console.log(this.sort);
       } else {
         this.sort = 'desc';
       }
@@ -22918,7 +22927,8 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "px-4 py-2 w-full h-full text-left",
+                          staticClass:
+                            "px-4 py-2 w-full h-full text-left whitespace-nowrap",
                           on: {
                             click: function($event) {
                               return _vm.order("id")
@@ -22960,7 +22970,8 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "px-4 py-2 w-full h-full text-left",
+                          staticClass:
+                            "px-4 py-2 w-full h-full text-left whitespace-nowrap",
                           on: {
                             click: function($event) {
                               return _vm.order("message")
@@ -23002,7 +23013,8 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "px-4 py-2 w-full h-full text-left",
+                          staticClass:
+                            "px-4 py-2 w-full h-full text-left whitespace-nowrap",
                           on: {
                             click: function($event) {
                               return _vm.order("file")
@@ -23044,7 +23056,8 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "px-4 py-2 w-full h-full text-left",
+                          staticClass:
+                            "px-4 py-2 w-full h-full text-left whitespace-nowrap",
                           on: {
                             click: function($event) {
                               return _vm.order("line")
@@ -23086,7 +23099,8 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "px-4 py-2 w-full h-full text-left",
+                          staticClass:
+                            "px-4 py-2 w-full h-full text-left whitespace-nowrap",
                           on: {
                             click: function($event) {
                               return _vm.order("solutions_count")
@@ -23128,7 +23142,8 @@ var render = function() {
                       _c(
                         "button",
                         {
-                          staticClass: "px-4 py-2 w-full h-full text-left",
+                          staticClass:
+                            "px-4 py-2 w-full h-full text-left whitespace-nowrap",
                           on: {
                             click: function($event) {
                               return _vm.order("created_at")
@@ -23170,95 +23185,114 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _c(
-              "tbody",
-              { staticClass: "bg-white border border-purple-exception-400" },
-              _vm._l(_vm.exceptions, function(exception) {
-                return _c(
-                  "tr",
-                  { key: exception.id, staticClass: "text-gray-700" },
-                  [
-                    _c("td", { staticClass: "px-4 py-3 border" }, [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(exception.id) +
-                          "\n                        "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "px-4 py-3 border" }, [
-                      _c("code", { staticClass: "overflow-ellipsis" }, [
-                        _vm._v(
-                          "\n                                " +
-                            _vm._s(exception.message) +
-                            "\n                            "
-                        )
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "px-4 py-3 border" }, [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(exception.file) +
-                          "\n                        "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "px-4 py-3 border text-right" }, [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(exception.line) +
-                          "\n                        "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "px-4 py-3 border text-right" }, [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(exception.solutions_count) +
-                          "\n                        "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "px-4 py-3 border" }, [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(exception.created_at) +
-                          "\n                        "
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("td", { staticClass: "px-4 border" }, [
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "h-full w-full flex justify-center content-center"
-                        },
-                        [
+            _vm.exceptions.length
+              ? _c(
+                  "tbody",
+                  {
+                    staticClass: "bg-white border border-purple-exception-400"
+                  },
+                  _vm._l(_vm.exceptions, function(exception) {
+                    return _c(
+                      "tr",
+                      { key: exception.id, staticClass: "text-gray-700" },
+                      [
+                        _c("td", { staticClass: "px-4 py-3 border" }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(exception.id) +
+                              "\n                        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "px-4 py-3 border" }, [
+                          _c("code", { staticClass: "overflow-ellipsis" }, [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(exception.message) +
+                                "\n                            "
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "px-4 py-3 border" }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(exception.file) +
+                              "\n                        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "px-4 py-3 border text-right" },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(exception.line) +
+                                "\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "px-4 py-3 border text-right" },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(exception.solutions_count) +
+                                "\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "px-4 py-3 border" }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(exception.created_at) +
+                              "\n                        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "px-4 border" }, [
                           _c(
-                            "a",
+                            "div",
                             {
                               staticClass:
-                                "px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle",
-                              attrs: {
-                                href: _vm.indexRoute + "/" + exception.id
-                              }
+                                "h-full w-full flex justify-center content-center"
                             },
                             [
-                              _vm._v(
-                                "\n                                    See\n                                "
+                              _c(
+                                "a",
+                                {
+                                  staticClass:
+                                    "px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle",
+                                  attrs: {
+                                    href: _vm.indexRoute + "/" + exception.id
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    See\n                                "
+                                  )
+                                ]
                               )
                             ]
                           )
-                        ]
-                      )
-                    ])
-                  ]
+                        ])
+                      ]
+                    )
+                  }),
+                  0
                 )
-              }),
-              0
-            )
+              : _c(
+                  "tbody",
+                  {
+                    staticClass:
+                      "bg-purple-exception-400 border border-purple-exception-400"
+                  },
+                  [_vm._m(0)]
+                )
           ]),
           _vm._v(" "),
           _c(
@@ -23351,7 +23385,26 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", {}, [
+      _c("td", { attrs: { colspan: "7" } }, [
+        _c(
+          "div",
+          { staticClass: "flex justify-center py-10 text-lg text-purple-900" },
+          [
+            _vm._v(
+              "\n                                No Exceptions Found\n                            "
+            )
+          ]
+        )
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 
