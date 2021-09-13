@@ -29,7 +29,7 @@
                     <thead>
                         <tr class="text-md font-semibold tracking-wide text-left text-purple-exception-800 capitalize border-b bg-purple-exception-300 ">
                             <th class="border border-purple-exception-400">
-                                <button class="px-4 py-2 w-full h-full text-left">
+                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('id')">
                                     ID 
                                     <span v-if="orderBy == 'id'">
                                         <span v-if="sort == 'desc'">
@@ -42,7 +42,7 @@
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
-                                <button class="px-4 py-2 w-full h-full text-left">
+                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('message')">
                                     Error Message 
                                     <span v-if="orderBy == 'message'">
                                         <span v-if="sort == 'desc'">
@@ -55,7 +55,7 @@
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
-                                <button class="px-4 py-2 w-full h-full text-left">
+                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('file')">
                                     File
                                     <span v-if="orderBy == 'file'">
                                         <span v-if="sort == 'desc'">
@@ -68,7 +68,7 @@
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
-                                <button class="px-4 py-2 w-full h-full text-left">
+                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('line')">
                                     Line
                                     <span v-if="orderBy == 'line'">
                                         <span v-if="sort == 'desc'">
@@ -81,9 +81,9 @@
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
-                                <button class="px-4 py-2 w-full h-full text-left">
+                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('solutions_count')">
                                     Solutions
-                                    <span v-if="orderBy == 'solutions'">
+                                    <span v-if="orderBy == 'solutions_count'">
                                         <span v-if="sort == 'desc'">
                                             &#8595;
                                         </span>
@@ -94,7 +94,7 @@
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
-                                <button class="px-4 py-2 w-full h-full text-left">
+                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('created_at')">
                                     Thrown at
                                     <span v-if="orderBy == 'created_at'">
                                         <span v-if="sort == 'desc'">
@@ -134,9 +134,11 @@
                                 {{ exception.created_at }}
                             </td>
                             <td class="px-4 border">
-                                <button class="px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
-                                    See
-                                </button>
+                                <div class="h-full w-full flex justify-center content-center">
+                                    <a :href="indexRoute + '/' + exception.id" class="px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
+                                        See
+                                    </a>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -198,7 +200,20 @@ export default {
 
             try
             {
-                let response = await axios.get(this.indexRoute);
+                let response = await axios.get(this.indexRoute, {
+                    params: {
+                        page: this.page,
+                        order_by: this.orderBy,
+                        sort: this.sort,
+                        perPage: this.perPage,
+                        filters: {
+                            search: this.search,
+                            start_date: this.startDate,
+                            end_date: this.endDate
+                        }
+                    },
+                    paramsSerializer: params => { return qs.stringify(params) }
+                });
                 this.isLoading = true;
                 this.exceptions = response.data.data;
                 this.exceptions = response.data.data;
@@ -217,7 +232,38 @@ export default {
             {
                 this.isLoading = false;
             }
+        },
+        order: function(attribute) {
+            if(this.orderBy == attribute)
+            {
+               this.sort = this.sort == 'desc' ? 'asc' : 'desc';
+            }
+            else
+            {
+                this.sort = 'desc';
+            }
+            this.orderBy = attribute;
         }
+    },
+    watch: {
+        page: function() {
+            this.getExceptions();
+        },
+        search: _.debounce(function() {
+            this.getExceptions();
+        }, 300),
+        startDate: function() {
+            this.getExceptions();
+        },
+        endDate: function() {
+            this.getExceptions();
+        },
+        sort: function() {
+            this.getExceptions();
+        },
+        orderBy: function() {
+            this.getExceptions();
+        },
     },
     mounted() {
         this.getExceptions();
