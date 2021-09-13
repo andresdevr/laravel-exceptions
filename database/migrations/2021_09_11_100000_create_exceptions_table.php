@@ -14,7 +14,7 @@ class CreateExceptionsTable extends Migration
     public function up()
     {
         Schema::create(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.exception'), function (Blueprint $table) {
-            $table->string('id')->unique();
+            $table->uuid('id')->primary();
             $table->string('message')->index();
             $table->text('full_message')->nullable();
             $table->string('code');

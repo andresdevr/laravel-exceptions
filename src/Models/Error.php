@@ -45,6 +45,16 @@ class Error extends Model implements ErrorInterface
     protected $keyType = 'string';
 
     /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = [
+        'exception',
+        'solution'
+    ];
+
+    /**
      * Get the table associated with the model.
      *
      * @return string
@@ -82,7 +92,7 @@ class Error extends Model implements ErrorInterface
      */
     public function renderError() : Response
     {
-        return app(Handler::class)->render(
+        return app(config('laravel-exceptions.handler'))->render(
             app('request'),
             $this->unserealized_error
         );

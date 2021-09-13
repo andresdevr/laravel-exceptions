@@ -4,6 +4,7 @@ namespace Andresdevr\LaravelExceptions\Http\Controllers;
 
 use Andresdevr\LaravelExceptions\Interfaces\ExceptionInterface;
 use Andresdevr\LaravelExceptions\Interfaces\ExceptionsInterface;
+use Andresdevr\LaravelExceptions\Models\Exception;
 use Illuminate\Http\Request;
 
 class ExceptionController extends Controller
@@ -30,10 +31,15 @@ class ExceptionController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if($request->wantsJson())
+        {
+            return $this->exceptions->index($request);
+        }
         return view('exceptions::exceptions.index');
     }
 
@@ -44,9 +50,13 @@ class ExceptionController extends Controller
      * @param  \Andresdevr\LaravelExceptions\Interfaces\ExceptionInterface $exception
      * @return \Illuminate\Http\Response
      */
-    public function show(ExceptionInterface $exception)
+    public function show(/*ExceptionInterface*/ $exception)
     {
-        //
+        $exception = Exception::whereId($exception)->firstOrFail(); //model binding does't work
+
+        return view('exceptions::exceptions.show')->with([
+            'exception' => $exception
+        ]);
     }
 
     /**

@@ -17,8 +17,12 @@ use Andresdevr\LaravelExceptions\Repositories\ErrorRepository;
 use Andresdevr\LaravelExceptions\Repositories\ExceptionRepository;
 use Andresdevr\LaravelExceptions\Repositories\SolutionRepository;
 use Andresdevr\LaravelExceptions\Http\Middleware\ChangeDebugExceptionConfiguration;
+use Andresdevr\LaravelExceptions\View\Components\Breadcrumb;
+use Andresdevr\LaravelExceptions\View\Components\BreadcrumbItem;
 use Andresdevr\LaravelExceptions\View\Components\ExceptionsLayout;
+use Andresdevr\LaravelExceptions\View\Components\Navbar;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
 class ExceptionsServiceProvider extends ServiceProvider
@@ -39,7 +43,7 @@ class ExceptionsServiceProvider extends ServiceProvider
         $this->observeModelsWithUuid();
         $this->registerMiddlewares();
         $this->registerRoutes();
-        $this->registerViews();
+        $this->registerViews(); 
     }
 
     /**
@@ -158,6 +162,9 @@ class ExceptionsServiceProvider extends ServiceProvider
 
         $this->loadViewComponentsAs('exceptions', [
             ExceptionsLayout::class,
+            Navbar::class,
+            Breadcrumb::class,
+            BreadcrumbItem::class
         ]);
     }
 }

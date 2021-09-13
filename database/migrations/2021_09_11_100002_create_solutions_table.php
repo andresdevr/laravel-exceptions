@@ -15,7 +15,7 @@ class CreateSolutionsTable extends Migration
     public function up()
     {
         Schema::create(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.solution'), function (Blueprint $table) {
-            $table->string('id')->unique();
+            $table->uuid('id')->primary(); 
             $table->string('error_id');
             $table->foreign('error_id')->references('id')->on(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.error'))->onDelete('cascade');
             $table->text('markdown_explanation')->nullable();

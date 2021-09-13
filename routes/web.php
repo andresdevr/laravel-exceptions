@@ -35,7 +35,6 @@ Route::name(config('laravel-exceptions.route-prefix-name'))
             'show',
             'destroy'
         ]);
-
         /**
          * Route for errors
          * 

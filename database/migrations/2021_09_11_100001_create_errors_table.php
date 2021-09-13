@@ -15,7 +15,7 @@ class CreateErrorsTable extends Migration
     public function up()
     {
         Schema::create(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.error'), function (Blueprint $table) {
-            $table->string('id')->unique();
+            $table->uuid('id')->primary();
             $table->string('exception_id');
             $table->foreign('exception_id')->references('id')->on(config('laravel-exceptions.database.prefix') . config('laravel-exceptions.database.tables.exception'))->onDelete('cascade');
             $table->string('user_id')->nullable();

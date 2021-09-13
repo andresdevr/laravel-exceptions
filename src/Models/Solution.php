@@ -43,6 +43,15 @@ class Solution extends Model implements SolutionInterface
      */
     protected $keyType = 'string';
 
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = [
+        'error'
+    ];
+
 	/**
      * Get the table associated with the model.
      *

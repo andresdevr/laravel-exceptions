@@ -8,6 +8,7 @@ use Andresdevr\LaravelExceptions\Models\Solution;
 use Andresdevr\LaravelExceptions\Models\Error;
 use Andresdevr\LaravelExceptions\Models\Exception;
 use Andresdevr\LaravelExceptions\Http\Middleware\ChangeDebugExceptionConfiguration;
+use Illuminate\Foundation\Exceptions\Handler;
 
 return [
 	
@@ -86,6 +87,8 @@ return [
 
     'debug' => (bool) true,
 
-    'git' => (bool) true
+    'git' => (bool) true,
+    
+    'handler' => Handler::class
 
 ];
