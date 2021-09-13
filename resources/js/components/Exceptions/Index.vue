@@ -33,10 +33,10 @@
                                     ID 
                                     <span v-if="orderBy == 'id'">
                                         <span v-if="sort == 'desc'">
-                                            &#8595;
+                                            &#8593;
                                         </span>
                                         <span v-if="sort == 'asc'">
-                                            &#8593;
+                                            &#8595;
                                         </span>
                                     </span>
                                 </button>
@@ -46,10 +46,10 @@
                                     Error Message 
                                     <span v-if="orderBy == 'message'">
                                         <span v-if="sort == 'desc'">
-                                            &#8595;
+                                            &#8593;
                                         </span>
                                         <span v-if="sort == 'asc'">
-                                            &#8593;
+                                            &#8595;
                                         </span>
                                     </span>
                                 </button>
@@ -59,10 +59,10 @@
                                     File
                                     <span v-if="orderBy == 'file'">
                                         <span v-if="sort == 'desc'">
-                                            &#8595;
+                                            &#8593;
                                         </span>
                                         <span v-if="sort == 'asc'">
-                                            &#8593;
+                                            &#8595;
                                         </span>
                                     </span>
                                 </button>
@@ -72,10 +72,10 @@
                                     Line
                                     <span v-if="orderBy == 'line'">
                                         <span v-if="sort == 'desc'">
-                                            &#8595;
+                                            &#8593;
                                         </span>
                                         <span v-if="sort == 'asc'">
-                                            &#8593;
+                                            &#8595;
                                         </span>
                                     </span>
                                 </button>
@@ -85,10 +85,10 @@
                                     Solutions
                                     <span v-if="orderBy == 'solutions_count'">
                                         <span v-if="sort == 'desc'">
-                                            &#8595;
+                                            &#8593;
                                         </span>
                                         <span v-if="sort == 'asc'">
-                                            &#8593;
+                                            &#8595;
                                         </span>
                                     </span>
                                 </button>
@@ -98,10 +98,10 @@
                                     Thrown at
                                     <span v-if="orderBy == 'created_at'">
                                         <span v-if="sort == 'desc'">
-                                            &#8595;
+                                            &#8593;
                                         </span>
                                         <span v-if="sort == 'asc'">
-                                            &#8593;
+                                            &#8595;
                                         </span>
                                     </span>
                                 </button>
@@ -153,7 +153,7 @@
                     </tbody>
 
                 </table>
-                <div class="px-4 py-2 bg-purple-exception-200 flex justify-start md:justify-center lg:justify-end">
+                <div class="px-4 py-4 bg-purple-exception-200 flex justify-start md:justify-center lg:justify-end">
                     <div class="flex">
                         <button v-if="page != 1" @click="page--" class="px-4 py-1 rounded-l-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
                             &#60;

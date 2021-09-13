@@ -22874,7 +22874,7 @@ var render = function() {
                 staticClass: "mr-4 text-purple-exception-800 mb-5",
                 attrs: { for: "end_date" }
               },
-              [_vm._v("\n                    End date'\n                ")]
+              [_vm._v("\n                    End date\n                ")]
             ),
             _vm._v(" "),
             _c("input", {
@@ -22944,7 +22944,7 @@ var render = function() {
                                 _vm.sort == "desc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↓\n                                    "
+                                        "\n                                        ↑\n                                    "
                                       )
                                     ])
                                   : _vm._e(),
@@ -22952,7 +22952,7 @@ var render = function() {
                                 _vm.sort == "asc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↑\n                                    "
+                                        "\n                                        ↓\n                                    "
                                       )
                                     ])
                                   : _vm._e()
@@ -22987,7 +22987,7 @@ var render = function() {
                                 _vm.sort == "desc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↓\n                                    "
+                                        "\n                                        ↑\n                                    "
                                       )
                                     ])
                                   : _vm._e(),
@@ -22995,7 +22995,7 @@ var render = function() {
                                 _vm.sort == "asc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↑\n                                    "
+                                        "\n                                        ↓\n                                    "
                                       )
                                     ])
                                   : _vm._e()
@@ -23030,7 +23030,7 @@ var render = function() {
                                 _vm.sort == "desc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↓\n                                    "
+                                        "\n                                        ↑\n                                    "
                                       )
                                     ])
                                   : _vm._e(),
@@ -23038,7 +23038,7 @@ var render = function() {
                                 _vm.sort == "asc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↑\n                                    "
+                                        "\n                                        ↓\n                                    "
                                       )
                                     ])
                                   : _vm._e()
@@ -23073,7 +23073,7 @@ var render = function() {
                                 _vm.sort == "desc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↓\n                                    "
+                                        "\n                                        ↑\n                                    "
                                       )
                                     ])
                                   : _vm._e(),
@@ -23081,7 +23081,7 @@ var render = function() {
                                 _vm.sort == "asc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↑\n                                    "
+                                        "\n                                        ↓\n                                    "
                                       )
                                     ])
                                   : _vm._e()
@@ -23116,7 +23116,7 @@ var render = function() {
                                 _vm.sort == "desc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↓\n                                    "
+                                        "\n                                        ↑\n                                    "
                                       )
                                     ])
                                   : _vm._e(),
@@ -23124,7 +23124,7 @@ var render = function() {
                                 _vm.sort == "asc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↑\n                                    "
+                                        "\n                                        ↓\n                                    "
                                       )
                                     ])
                                   : _vm._e()
@@ -23159,7 +23159,7 @@ var render = function() {
                                 _vm.sort == "desc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↓\n                                    "
+                                        "\n                                        ↑\n                                    "
                                       )
                                     ])
                                   : _vm._e(),
@@ -23167,7 +23167,7 @@ var render = function() {
                                 _vm.sort == "asc"
                                   ? _c("span", [
                                       _vm._v(
-                                        "\n                                        ↑\n                                    "
+                                        "\n                                        ↓\n                                    "
                                       )
                                     ])
                                   : _vm._e()
@@ -23299,7 +23299,7 @@ var render = function() {
             "div",
             {
               staticClass:
-                "px-4 py-2 bg-purple-exception-200 flex justify-start md:justify-center lg:justify-end"
+                "px-4 py-4 bg-purple-exception-200 flex justify-start md:justify-center lg:justify-end"
             },
             [
               _c(
