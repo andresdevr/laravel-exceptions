@@ -2065,6 +2065,326 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Errors/Index.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Errors/Index.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    indexRoute: {
+      type: String
+    },
+    exception: {
+      type: String
+    }
+  },
+  data: function data() {
+    return {
+      isLoading: false,
+      errors: [],
+      search: '',
+      startDate: '',
+      endDate: '',
+      page: 1,
+      lastPage: 1,
+      perPage: 15,
+      orderBy: 'created_at',
+      sort: 'desc',
+      from: 1,
+      to: 1,
+      total: 1
+    };
+  },
+  computed: {
+    exceptionFormatted: function exceptionFormatted() {
+      return JSON.parse(this.exception);
+    },
+    pages: function pages() {
+      var first = this.page - 3 >= 1 ? this.page - 3 : 1;
+      var last = this.page + 3 <= this.lastPage ? this.page + 3 : this.lastPage;
+      return Array.from({
+        length: last - first + 1
+      }, function (_, i) {
+        return i + first;
+      });
+    }
+  },
+  methods: {
+    getErrors: function () {
+      var _getErrors = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                this.isLoading = true;
+                _context.prev = 1;
+                _context.next = 4;
+                return axios.get(this.indexRoute, {
+                  params: {
+                    page: this.page,
+                    order_by: this.orderBy,
+                    sort: this.sort,
+                    perPage: this.perPage,
+                    filters: {
+                      search: this.search,
+                      start_date: this.startDate,
+                      end_date: this.endDate
+                    }
+                  },
+                  paramsSerializer: function paramsSerializer(params) {
+                    return qs.stringify(params);
+                  }
+                });
+
+              case 4:
+                response = _context.sent;
+                this.isLoading = true;
+                this.errors = response.data.data;
+                this.page = response.data.current_page;
+                this.lastPage = response.data.last_page;
+                this.from = response.data.from;
+                this.to = response.data.to;
+                this.total = response.data.total;
+                this.perPage = response.data.per_page;
+                _context.next = 18;
+                break;
+
+              case 15:
+                _context.prev = 15;
+                _context.t0 = _context["catch"](1);
+                console.log(_context.t0);
+
+              case 18:
+                _context.prev = 18;
+                this.isLoading = false;
+                return _context.finish(18);
+
+              case 21:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this, [[1, 15, 18, 21]]);
+      }));
+
+      function getErrors() {
+        return _getErrors.apply(this, arguments);
+      }
+
+      return getErrors;
+    }(),
+    order: function order(attribute) {
+      if (this.orderBy == attribute) {
+        this.sort = this.sort == 'desc' ? 'asc' : 'desc';
+      } else {
+        this.sort = 'desc';
+      }
+
+      this.orderBy = attribute;
+    }
+  },
+  watch: {
+    page: function page() {
+      this.getErrors();
+    },
+    search: _.debounce(function () {
+      this.getErrors();
+    }, 300),
+    startDate: function startDate() {
+      this.getErrors();
+    },
+    endDate: function endDate() {
+      this.getErrors();
+    },
+    sort: function sort() {
+      this.getErrors();
+    },
+    orderBy: function orderBy() {
+      this.getErrors();
+    }
+  },
+  mounted: function mounted() {
+    this.getErrors();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Exceptions/Index.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Exceptions/Index.vue?vue&type=script&lang=js& ***!
@@ -2323,32 +2643,31 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 response = _context.sent;
                 this.isLoading = true;
                 this.exceptions = response.data.data;
-                this.exceptions = response.data.data;
                 this.page = response.data.current_page;
                 this.lastPage = response.data.last_page;
                 this.from = response.data.from;
                 this.to = response.data.to;
                 this.total = response.data.total;
                 this.perPage = response.data.per_page;
-                _context.next = 19;
+                _context.next = 18;
                 break;
 
-              case 16:
-                _context.prev = 16;
+              case 15:
+                _context.prev = 15;
                 _context.t0 = _context["catch"](1);
                 console.log(_context.t0);
 
-              case 19:
-                _context.prev = 19;
+              case 18:
+                _context.prev = 18;
                 this.isLoading = false;
-                return _context.finish(19);
+                return _context.finish(18);
 
-              case 22:
+              case 21:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, this, [[1, 16, 19, 22]]);
+        }, _callee, this, [[1, 15, 18, 21]]);
       }));
 
       function getExceptions() {
@@ -2407,6 +2726,7 @@ window.qs = __webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js");
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'; //Components
 
 window.Vue.component('exceptions-index', __webpack_require__(/*! ./components/Exceptions/Index.vue */ "./resources/js/components/Exceptions/Index.vue")["default"]);
+window.Vue.component('errors-index', __webpack_require__(/*! ./components/Errors/Index.vue */ "./resources/js/components/Errors/Index.vue")["default"]);
 var app = new Vue({
   el: "#app"
 });
@@ -22699,6 +23019,45 @@ module.exports = function getSideChannel() {
 
 /***/ }),
 
+/***/ "./resources/js/components/Errors/Index.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/Errors/Index.vue ***!
+  \**************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Index_vue_vue_type_template_id_4575a40e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Index.vue?vue&type=template&id=4575a40e& */ "./resources/js/components/Errors/Index.vue?vue&type=template&id=4575a40e&");
+/* harmony import */ var _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Index.vue?vue&type=script&lang=js& */ "./resources/js/components/Errors/Index.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Index_vue_vue_type_template_id_4575a40e___WEBPACK_IMPORTED_MODULE_0__.render,
+  _Index_vue_vue_type_template_id_4575a40e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/Errors/Index.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/Exceptions/Index.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/Exceptions/Index.vue ***!
@@ -22738,6 +23097,22 @@ component.options.__file = "resources/js/components/Exceptions/Index.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/Errors/Index.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/Errors/Index.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Index.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Errors/Index.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Exceptions/Index.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************!*\
   !*** ./resources/js/components/Exceptions/Index.vue?vue&type=script&lang=js& ***!
@@ -22754,6 +23129,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/Errors/Index.vue?vue&type=template&id=4575a40e&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/Errors/Index.vue?vue&type=template&id=4575a40e& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_4575a40e___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_4575a40e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_4575a40e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Index.vue?vue&type=template&id=4575a40e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Errors/Index.vue?vue&type=template&id=4575a40e&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Exceptions/Index.vue?vue&type=template&id=a9c5285c&":
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/Exceptions/Index.vue?vue&type=template&id=a9c5285c& ***!
@@ -22767,6 +23159,589 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_a9c5285c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Index_vue_vue_type_template_id_a9c5285c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./Index.vue?vue&type=template&id=a9c5285c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Exceptions/Index.vue?vue&type=template&id=a9c5285c&");
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Errors/Index.vue?vue&type=template&id=4575a40e&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/Errors/Index.vue?vue&type=template&id=4575a40e& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", {}, [
+    _c(
+      "div",
+      {
+        staticClass:
+          "px-5 bg-purple-exception-300 text-gray-900 rounded-t-md text-sm border shadow-md border-purple-exception-400 py-8 mb-5"
+      },
+      [
+        _c("p", { staticClass: "mb-1 text-gray-900 font-semibold" }, [
+          _vm._v(
+            "\n            " +
+              _vm._s(
+                _vm.exceptionFormatted.full_message
+                  ? _vm.exceptionFormatted.full_message
+                  : _vm.exceptionFormatted.message
+              ) +
+              "\n        "
+          )
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass:
+          "py-3 px-5 bg-purple-exception-300 text-gray-900 rounded-t-md text-sm border shadow-md border-purple-exception-400"
+      },
+      [
+        _c("div", { staticClass: "grid grid-cols-6 md:grid-cols-12 gap-2" }, [
+          _c("div", { staticClass: "col-span-6" }, [
+            _c(
+              "label",
+              {
+                staticClass: "mr-4 text-purple-exception-800 mb-5",
+                attrs: { for: "search" }
+              },
+              [_vm._v("\n                    Search\n                ")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.search,
+                  expression: "search"
+                }
+              ],
+              staticClass:
+                "border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md",
+              attrs: {
+                type: "text",
+                placeholder: "'message, code, file, line..."
+              },
+              domProps: { value: _vm.search },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.search = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-span-3" }, [
+            _c(
+              "label",
+              {
+                staticClass: "mr-4 text-purple-exception-800 mb-5",
+                attrs: { for: "start_date" }
+              },
+              [_vm._v("\n                    Start date\n                ")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.startDate,
+                  expression: "startDate"
+                }
+              ],
+              staticClass:
+                "border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md",
+              attrs: { type: "date" },
+              domProps: { value: _vm.startDate },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.startDate = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-span-3" }, [
+            _c(
+              "label",
+              {
+                staticClass: "mr-4 text-purple-exception-800 mb-5",
+                attrs: { for: "end_date" }
+              },
+              [_vm._v("\n                    End date\n                ")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.endDate,
+                  expression: "endDate"
+                }
+              ],
+              staticClass:
+                "border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md",
+              attrs: { type: "date" },
+              domProps: { value: _vm.endDate },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.endDate = $event.target.value
+                }
+              }
+            })
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "w-full mb-8 overflow-hidden rounded-b-lg shadow-md mt-4"
+      },
+      [
+        _c("div", { staticClass: "w-full overflow-x-auto" }, [
+          _c("table", { staticClass: "w-full" }, [
+            _c("thead", [
+              _c(
+                "tr",
+                {
+                  staticClass:
+                    "text-md font-semibold tracking-wide text-left text-purple-exception-800 capitalize border-b bg-purple-exception-300 "
+                },
+                [
+                  _c(
+                    "th",
+                    { staticClass: "border border-purple-exception-400" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "px-4 py-2 w-full h-full text-left whitespace-nowrap",
+                          on: {
+                            click: function($event) {
+                              return _vm.order("id")
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                ID \n                                "
+                          ),
+                          _vm.orderBy == "id"
+                            ? _c("span", [
+                                _vm.sort == "desc"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n                                        ↑\n                                    "
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.sort == "asc"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n                                        ↓\n                                    "
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ])
+                            : _vm._e()
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    { staticClass: "border border-purple-exception-400" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "px-4 py-2 w-full h-full text-left whitespace-nowrap",
+                          on: {
+                            click: function($event) {
+                              return _vm.order("user")
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                Thrown by\n                                "
+                          ),
+                          _vm.orderBy == "user"
+                            ? _c("span", [
+                                _vm.sort == "desc"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n                                        ↑\n                                    "
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.sort == "asc"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n                                        ↓\n                                    "
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ])
+                            : _vm._e()
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    { staticClass: "border border-purple-exception-400" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "px-4 py-2 w-full h-full text-left whitespace-nowrap",
+                          on: {
+                            click: function($event) {
+                              return _vm.order("commit")
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                Commit\n                                "
+                          ),
+                          _vm.orderBy == "commit"
+                            ? _c("span", [
+                                _vm.sort == "desc"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n                                        ↑\n                                    "
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.sort == "asc"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n                                        ↓\n                                    "
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ])
+                            : _vm._e()
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "th",
+                    { staticClass: "border border-purple-exception-400" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "px-4 py-2 w-full h-full text-left whitespace-nowrap",
+                          on: {
+                            click: function($event) {
+                              return _vm.order("created_at")
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                Thrown at\n                                "
+                          ),
+                          _vm.orderBy == "created_at"
+                            ? _c("span", [
+                                _vm.sort == "desc"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n                                        ↑\n                                    "
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.sort == "asc"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n                                        ↓\n                                    "
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ])
+                            : _vm._e()
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("th", {
+                    staticClass: "border border-purple-exception-400"
+                  }),
+                  _vm._v(" "),
+                  _c("th", {
+                    staticClass: "border border-purple-exception-400"
+                  }),
+                  _vm._v(" "),
+                  _c("th", {
+                    staticClass: "border border-purple-exception-400"
+                  })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _vm.errors.length
+              ? _c(
+                  "tbody",
+                  {
+                    staticClass: "bg-white border border-purple-exception-400"
+                  },
+                  _vm._l(_vm.errors, function(error) {
+                    return _c(
+                      "tr",
+                      { key: error.id, staticClass: "text-gray-700" },
+                      [
+                        _c("td", { staticClass: "px-4 py-3 border" }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(error.id) +
+                              "\n                        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "px-4 py-3 border" }, [
+                          _c("code", { staticClass: "overflow-ellipsis" }, [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(error.user.email) +
+                                "\n                            "
+                            )
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "px-4 py-3 border" }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(error.file) +
+                              "\n                        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "px-4 py-3 border text-right" },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(error.line) +
+                                "\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "px-4 py-3 border text-right" },
+                          [
+                            _vm._v(
+                              "\n                            " +
+                                _vm._s(error.solutions_count) +
+                                "\n                        "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "px-4 py-3 border" }, [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(error.created_at) +
+                              "\n                        "
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "px-4 border" }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "h-full w-full flex justify-center content-center"
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass:
+                                    "px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle",
+                                  attrs: {
+                                    href: _vm.indexRoute + "/" + error.id
+                                  }
+                                },
+                                [
+                                  _vm._v(
+                                    "\n                                    See\n                                "
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                    )
+                  }),
+                  0
+                )
+              : _c(
+                  "tbody",
+                  {
+                    staticClass:
+                      "bg-purple-exception-400 border border-purple-exception-400"
+                  },
+                  [_vm._m(0)]
+                )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "px-4 py-4 bg-purple-exception-200 flex justify-start md:justify-center lg:justify-end"
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "flex" },
+                [
+                  _vm.page != 1
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "px-4 py-1 rounded-l-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle",
+                          on: {
+                            click: function($event) {
+                              _vm.page--
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        <\n                    "
+                          )
+                        ]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._l(_vm.pages, function(p) {
+                    return _c(
+                      "button",
+                      {
+                        staticClass:
+                          "px-4 py-1 text-sm font-medium border focus:outline-none focus:ring transition border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-300 align-middle",
+                        class: {
+                          "text-white": _vm.page == p,
+                          "text-purple-exception-700": _vm.page != p,
+                          "bg-purple-exception-700": _vm.page == p,
+                          "rounded-r-md":
+                            _vm.page == _vm.lastPage && p == _vm.lastPage,
+                          "rounded-l-md": p == 1 && _vm.page == 1
+                        },
+                        on: {
+                          click: function($event) {
+                            _vm.page = p
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(p) +
+                            "\n                    "
+                        )
+                      ]
+                    )
+                  }),
+                  _vm._v(" "),
+                  _vm.page != _vm.lastPage
+                    ? _c(
+                        "button",
+                        {
+                          staticClass:
+                            "px-4 py-1 rounded-r-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-300 align-middle",
+                          on: {
+                            click: function($event) {
+                              _vm.page++
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                        >\n                    "
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                ],
+                2
+              )
+            ]
+          )
+        ])
+      ]
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("tr", {}, [
+      _c("td", { attrs: { colspan: "7" } }, [
+        _c(
+          "div",
+          { staticClass: "flex justify-center py-10 text-lg text-purple-900" },
+          [
+            _vm._v(
+              "\n                                No Exceptions Found\n                            "
+            )
+          ]
+        )
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
 
 
 /***/ }),
@@ -22801,7 +23776,7 @@ var render = function() {
               "label",
               {
                 staticClass: "mr-4 text-purple-exception-800 mb-5",
-                attrs: { for: "searc" }
+                attrs: { for: "search" }
               },
               [_vm._v("\n                    Search\n                ")]
             ),
@@ -23152,7 +24127,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                                Thrown at\n                                "
+                            "\n                                Thrown first time at\n                                "
                           ),
                           _vm.orderBy == "created_at"
                             ? _c("span", [

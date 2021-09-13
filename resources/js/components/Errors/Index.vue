@@ -1,5 +1,10 @@
 <template>
      <div class="">
+      <div class="px-5 bg-purple-exception-300 text-gray-900 rounded-t-md text-sm border shadow-md border-purple-exception-400 py-8 mb-5">
+            <p class="mb-1 text-gray-900 font-semibold">
+                {{ exceptionFormatted.full_message ? exceptionFormatted.full_message : exceptionFormatted.message }}
+            </p>
+        </div>
         <div class="py-3 px-5 bg-purple-exception-300 text-gray-900 rounded-t-md text-sm border shadow-md border-purple-exception-400">
             <div class="grid grid-cols-6 md:grid-cols-12 gap-2">
                 <div class="col-span-6">
@@ -22,6 +27,7 @@
                 </div>
             </div>
         </div>
+       
 
         <div class="w-full mb-8 overflow-hidden rounded-b-lg shadow-md mt-4">
             <div class="w-full overflow-x-auto">
@@ -42,9 +48,9 @@
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
-                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('message')">
-                                    Error Message 
-                                    <span v-if="orderBy == 'message'">
+                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('user')">
+                                    Thrown by
+                                    <span v-if="orderBy == 'user'">
                                         <span v-if="sort == 'desc'">
                                             &#8593;
                                         </span>
@@ -55,35 +61,9 @@
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
-                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('file')">
-                                    File
-                                    <span v-if="orderBy == 'file'">
-                                        <span v-if="sort == 'desc'">
-                                            &#8593;
-                                        </span>
-                                        <span v-if="sort == 'asc'">
-                                            &#8595;
-                                        </span>
-                                    </span>
-                                </button>
-                            </th>
-                            <th class="border border-purple-exception-400">
-                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('line')">
-                                    Line
-                                    <span v-if="orderBy == 'line'">
-                                        <span v-if="sort == 'desc'">
-                                            &#8593;
-                                        </span>
-                                        <span v-if="sort == 'asc'">
-                                            &#8595;
-                                        </span>
-                                    </span>
-                                </button>
-                            </th>
-                            <th class="border border-purple-exception-400">
-                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('solutions_count')">
-                                    Solutions
-                                    <span v-if="orderBy == 'solutions_count'">
+                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('commit')">
+                                    Commit
+                                    <span v-if="orderBy == 'commit'">
                                         <span v-if="sort == 'desc'">
                                             &#8593;
                                         </span>
@@ -95,7 +75,7 @@
                             </th>
                             <th class="border border-purple-exception-400">
                                 <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('created_at')">
-                                    Thrown first time at
+                                    Thrown at
                                     <span v-if="orderBy == 'created_at'">
                                         <span v-if="sort == 'desc'">
                                             &#8593;
@@ -107,35 +87,41 @@
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
+                                
+                            </th>
+                            <th class="border border-purple-exception-400">
+                                
+                            </th>
+                            <th class="border border-purple-exception-400">
                                
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white border border-purple-exception-400" v-if="exceptions.length">
-                        <tr class="text-gray-700" v-for="exception in exceptions" :key="exception.id">
+                    <tbody class="bg-white border border-purple-exception-400" v-if="errors.length">
+                        <tr class="text-gray-700" v-for="error in errors" :key="error.id">
                             <td class="px-4 py-3 border">
-                                {{ exception.id }}
+                                {{ error.id }}
                             </td>
                             <td class="px-4 py-3 border">
                                 <code class="overflow-ellipsis">
-                                    {{ exception.message }}
+                                    {{ error.user.email }}
                                 </code>
                             </td>
                             <td class="px-4 py-3 border">
-                                {{ exception.file }}
+                                {{ error.file }}
                             </td>
                             <td class="px-4 py-3 border text-right">
-                                {{ exception.line }}
+                                {{ error.line }}
                             </td>
                             <td class="px-4 py-3 border text-right">
-                                {{ exception.solutions_count }}
+                                {{ error.solutions_count }}
                             </td>
                             <td class="px-4 py-3 border">
-                                {{ exception.created_at }}
+                                {{ error.created_at }}
                             </td>
                             <td class="px-4 border">
                                 <div class="h-full w-full flex justify-center content-center">
-                                    <a :href="indexRoute + '/' + exception.id" class="px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
+                                    <a :href="indexRoute + '/' + error.id" class="px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
                                         See
                                     </a>
                                 </div>
@@ -146,7 +132,7 @@
                         <tr class="">
                             <td colspan="7">
                                 <div class="flex justify-center py-10 text-lg text-purple-900">
-                                    No Exceptions Found
+                                    No Errors Found
                                 </div>
                             </td>
                         </tr>
@@ -176,12 +162,15 @@ export default {
     props: {
         indexRoute: {
             type: String
+        },
+        exception: {
+            type: String
         }
     },
     data() {
         return {
             isLoading: false,
-            exceptions: [],
+            errors: [],
             search: '',
             startDate: '',
             endDate: '',
@@ -196,6 +185,9 @@ export default {
         }       
     },
     computed: {
+        exceptionFormatted: function() {
+            return JSON.parse(this.exception);
+        },
         pages: function() {
             let first = (this.page - 3 >= 1) ? this.page - 3 : 1;
             let last = (this.page + 3 <= this.lastPage) ? this.page + 3 : this.lastPage;
@@ -205,7 +197,7 @@ export default {
         }
     },
     methods: {
-        getExceptions: async function() {
+        getErrors: async function() {
             this.isLoading = true;
 
             try
@@ -225,7 +217,7 @@ export default {
                     paramsSerializer: params => { return qs.stringify(params) }
                 });
                 this.isLoading = true;
-                this.exceptions = response.data.data;
+                this.errors = response.data.data;
                 this.page = response.data.current_page;
                 this.lastPage = response.data.last_page;
                 this.from = response.data.from;
@@ -256,26 +248,26 @@ export default {
     },
     watch: {
         page: function() {
-            this.getExceptions();
+            this.getErrors();
         },
         search: _.debounce(function() {
-            this.getExceptions();
+            this.getErrors();
         }, 300),
         startDate: function() {
-            this.getExceptions();
+            this.getErrors();
         },
         endDate: function() {
-            this.getExceptions();
+            this.getErrors();
         },
         sort: function() {
-            this.getExceptions();
+            this.getErrors();
         },
         orderBy: function() {
-            this.getExceptions();
+            this.getErrors();
         },
     },
     mounted() {
-        this.getExceptions();
+        this.getErrors();
     }
 }
 </script>

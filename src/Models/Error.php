@@ -51,7 +51,8 @@ class Error extends Model implements ErrorInterface
      */
     protected $with = [
         'exception',
-        'solution'
+        'solution',
+        'user'
     ];
 
     /**
@@ -96,6 +97,18 @@ class Error extends Model implements ErrorInterface
             app('request'),
             $this->unserealized_error
         );
+    }
+    
+    /**
+     * Relationship with user
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user() : BelongsTo
+    {
+        return $this->belongsTo(config('auth.providers.users.model'))->withDefault([
+            'email' => 'Guest Author',
+        ]);
     }
 
     /**
