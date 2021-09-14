@@ -109,8 +109,8 @@ class BugTrack
      */
     protected function getCurrentCommit()
     {
-        return (string) Str::of(exec(self::GITCOMMAND . $this->exception->getFile()))
-                            ->trim()
-                            ->ascii();
+        // return (string) Str::of(exec(self::GITCOMMAND . $this->exception->getFile()))
+        //                     ->trim()
+        //                     ->ascii();
     }
 }
