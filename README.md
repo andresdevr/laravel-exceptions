@@ -7,7 +7,7 @@ Laravel exceptions it's a on project bug tracker package, this package can handl
 Use the package manager [composer](https://getcomposer.org/) to install Laravel Exceptions.
 
 ```bash
-composer require andresdevr\laravel-exceptions
+composer require andresdevr/laravel-exceptions
 ```
 
 ## Usage
