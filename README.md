@@ -10,8 +10,13 @@ Use the package manager [composer](https://getcomposer.org/) to install Laravel 
 composer require andresdevr/laravel-exceptions
 ```
 
+Then, run your migrations
+```bash
+php artisan migrate
+```
+
 ## Usage
-You only have to add the `Andresdevr\LaravelExceptions\Classes\Bugtrack::report` to you exception handler, by default Laravel use the [Handler](https://laravel.com/docs/8.x/errors#the-exception-handler)
+You only have to add the `Andresdevr\LaravelExceptions\Classes\Bugtrack::report` to you exception handler located in `app\Exceptions\Handler.php`, by default Laravel use the [Handler](https://laravel.com/docs/8.x/errors#the-exception-handler)
 
 ```php
 /**
