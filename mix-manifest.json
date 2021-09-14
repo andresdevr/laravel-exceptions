@@ -1,9 +1,4 @@
 {
     "/public/js/exceptions.bundle.js": "/public/js/exceptions.bundle.js",
-    "/public/css/exceptions.bundle.css": "/public/css/exceptions.bundle.css",
-    "/public/fonts/vendor/mavon-editor/dist/fontello.eot": "/public/fonts/vendor/mavon-editor/dist/fontello.eot",
-    "/public/fonts/vendor/mavon-editor/dist/fontello.svg": "/public/fonts/vendor/mavon-editor/dist/fontello.svg",
-    "/public/fonts/vendor/mavon-editor/dist/fontello.ttf": "/public/fonts/vendor/mavon-editor/dist/fontello.ttf",
-    "/public/fonts/vendor/mavon-editor/dist/fontello.woff": "/public/fonts/vendor/mavon-editor/dist/fontello.woff",
-    "/public/fonts/vendor/mavon-editor/dist/fontello.woff2": "/public/fonts/vendor/mavon-editor/dist/fontello.woff2"
+    "/public/css/exceptions.bundle.css": "/public/css/exceptions.bundle.css"
 }

@@ -40,7 +40,7 @@ Route::name(config('laravel-exceptions.route-prefix-name'))
          * @return \Illuminate\Http\Response
          */
         Route::resource('exceptions.errors', ErrorController::class)->only([
-            'idex',
+            'index',
             'show'
         ]);
 

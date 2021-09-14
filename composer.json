@@ -13,14 +13,16 @@
             "Andresdevr\\LaravelExceptions\\": "src/"
         }
     },
-    
-    "authors": [
-        {
-            "name": "andresdevr",
-            "email": "andres22.dev@gmail.com",
-            "homepage": "https://github.com/andresdevr"
-        }
-    ],
+
+    "authors": [{
+        "name": "andresdevr",
+        "email": "andres22.dev@gmail.com",
+        "homepage": "https://github.com/andresdevr"
+    }],
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/support": "^8.0|^7.0"
+    },
     "require-dev": {
         "orchestra/testbench": "^6.21"
     },
