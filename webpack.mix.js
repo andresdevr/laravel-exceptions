@@ -8,6 +8,7 @@ mix.js('resources/js/app.js', 'public/js/exceptions.bundle.js')
         processCssUrls: true,
         postCss: [tailwindcss('./tailwind.config.js')],
     })
+    .copyDirectory('node_modules/mavon-editor/dist/font', 'public/fonts/vendor/mavon-editor/dist');
 
 
 if (mix.inProduction()) {

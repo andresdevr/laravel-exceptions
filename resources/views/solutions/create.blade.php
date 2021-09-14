@@ -20,6 +20,7 @@
         </x-exceptions-breadcrumb-item>
     </x-exceptions-breadcrumb>
     <div class="my-3">
-	    
+	<solutions-create create-route="{{ route(config('laravel-exceptions.route-prefix-name') . 'errors.solutions.store', ['error' => $error->id]) }}">
+	</solutions-create>
     </div>
 </x-exceptions-exceptions-layout>

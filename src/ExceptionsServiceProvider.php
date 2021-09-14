@@ -38,6 +38,7 @@ class ExceptionsServiceProvider extends ServiceProvider
         if($this->app->runningInConsole()) 
         {
             $this->publishConfiguration();
+            $this->publishAssets();
             $this->publishViews();
         }
         $this->loadMigrations();
@@ -84,6 +85,18 @@ class ExceptionsServiceProvider extends ServiceProvider
             __DIR__.'/../resources/views' => resource_path('views/vendor/laravel-exceptions'),
             __DIR__.'/View/Layout' => app_path('View/Layout')
         ], 'exceptions-views');
+    }
+
+    /**
+     * Publish the assets
+     * 
+     * @return void
+     */
+    private function publishAssets()
+    {
+        $this->publishes([
+            __DIR__.'/../public/fonts' => public_path('fonts'),
+        ], 'exceptions-assets');
     }
 
     /**
