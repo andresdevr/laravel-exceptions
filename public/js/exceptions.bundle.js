@@ -2243,9 +2243,51 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     indexRoute: {
+      type: String
+    },
+    solutionCreateRoute: {
       type: String
     },
     exception: {
@@ -2356,6 +2398,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       this.orderBy = attribute;
+    },
+    fixError: function () {
+      var _fixError = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2(id) {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                response = axios.post(this.solutionCreateRoute + id + "/solutions");
+                this.getErrors();
+
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2, this);
+      }));
+
+      function fixError(_x) {
+        return _fixError.apply(this, arguments);
+      }
+
+      return fixError;
+    }(),
+    goToFix: function goToFix(id) {
+      window.location.href = this.solutionCreateRoute + id + "/solutions/create";
+    },
+    goToSolution: function goToSolution(errorId, solutionId) {
+      window.location.href = this.solutionCreateRoute + errorId + "/solutions/create" + solutionId;
     }
   },
   watch: {
@@ -23187,16 +23259,31 @@ var render = function() {
           "px-5 bg-purple-exception-300 text-gray-900 rounded-t-md text-sm border shadow-md border-purple-exception-400 py-8 mb-5"
       },
       [
-        _c("p", { staticClass: "mb-1 text-gray-900 font-semibold" }, [
-          _vm._v(
-            "\n            " +
-              _vm._s(
-                _vm.exceptionFormatted.full_message
-                  ? _vm.exceptionFormatted.full_message
-                  : _vm.exceptionFormatted.message
-              ) +
-              "\n        "
-          )
+        _c("div", { staticClass: "flex justify-center" }, [
+          _c("div", { staticClass: "text-lg" }, [
+            _c("b", [_vm._v(" File: ")]),
+            _vm._v(" " + _vm._s(_vm.exceptionFormatted.file) + " "),
+            _c("b", [_vm._v(" on line")]),
+            _vm._v(" " + _vm._s(_vm.exceptionFormatted.line) + "\n            ")
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "text-xl my-4" }, [
+          _c("b", [_vm._v("Error code: ")]),
+          _vm._v(" " + _vm._s(_vm.exceptionFormatted.code) + "\n            "),
+          _c("h1", { staticClass: "my-2 text-2xl" }, [
+            _c("code", [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(
+                    _vm.exceptionFormatted.full_message
+                      ? _vm.exceptionFormatted.full_message
+                      : _vm.exceptionFormatted.message
+                  ) +
+                  "\n                "
+              )
+            ])
+          ])
         ])
       ]
     ),
@@ -23232,7 +23319,7 @@ var render = function() {
                 "border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md",
               attrs: {
                 type: "text",
-                placeholder: "'message, code, file, line..."
+                placeholder: "message, code, file, line..."
               },
               domProps: { value: _vm.search },
               on: {
@@ -23505,6 +23592,49 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
+                  _c(
+                    "th",
+                    { staticClass: "border border-purple-exception-400" },
+                    [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "px-4 py-2 w-full h-full text-left whitespace-nowrap",
+                          on: {
+                            click: function($event) {
+                              return _vm.order("created_at")
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                                Has been fixed\n                                "
+                          ),
+                          _vm.orderBy == "created_at"
+                            ? _c("span", [
+                                _vm.sort == "desc"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n                                        ↑\n                                    "
+                                      )
+                                    ])
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _vm.sort == "asc"
+                                  ? _c("span", [
+                                      _vm._v(
+                                        "\n                                        ↓\n                                    "
+                                      )
+                                    ])
+                                  : _vm._e()
+                              ])
+                            : _vm._e()
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
                   _c("th", {
                     staticClass: "border border-purple-exception-400"
                   }),
@@ -23552,34 +23682,10 @@ var render = function() {
                         _c("td", { staticClass: "px-4 py-3 border" }, [
                           _vm._v(
                             "\n                            " +
-                              _vm._s(error.file) +
+                              _vm._s(error.commit) +
                               "\n                        "
                           )
                         ]),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          { staticClass: "px-4 py-3 border text-right" },
-                          [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(error.line) +
-                                "\n                        "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "td",
-                          { staticClass: "px-4 py-3 border text-right" },
-                          [
-                            _vm._v(
-                              "\n                            " +
-                                _vm._s(error.solutions_count) +
-                                "\n                        "
-                            )
-                          ]
-                        ),
                         _vm._v(" "),
                         _c("td", { staticClass: "px-4 py-3 border" }, [
                           _vm._v(
@@ -23587,6 +23693,16 @@ var render = function() {
                               _vm._s(error.created_at) +
                               "\n                        "
                           )
+                        ]),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "px-4 py-3 border" }, [
+                          _c("span", [
+                            _vm._v(
+                              "\n                                " +
+                                _vm._s(error.solution ? "Yes" : "No") +
+                                "\n                            "
+                            )
+                          ])
                         ]),
                         _vm._v(" "),
                         _c("td", { staticClass: "px-4 border" }, [
@@ -23603,6 +23719,7 @@ var render = function() {
                                   staticClass:
                                     "px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle",
                                   attrs: {
+                                    target: "_blank",
                                     href: _vm.indexRoute + "/" + error.id
                                   }
                                 },
@@ -23614,7 +23731,95 @@ var render = function() {
                               )
                             ]
                           )
-                        ])
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          {
+                            staticClass: "px-4 border",
+                            attrs: { colspan: !error.solution ? "1" : "2" }
+                          },
+                          [
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "h-full w-full flex justify-center content-center"
+                              },
+                              [
+                                error.solution
+                                  ? _c(
+                                      "a",
+                                      {
+                                        staticClass:
+                                          "px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.goToSolution(
+                                              error.id,
+                                              error.solution.id
+                                            )
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          " \n                                    See solution\n                                "
+                                        )
+                                      ]
+                                    )
+                                  : _c(
+                                      "button",
+                                      {
+                                        staticClass:
+                                          "px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle",
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.fixError(error.id)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n                                    Quick fix\n                                "
+                                        )
+                                      ]
+                                    )
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        !error.solution
+                          ? _c("td", { staticClass: "px-4 border" }, [
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "h-full w-full flex justify-center content-center"
+                                },
+                                [
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle",
+                                      on: {
+                                        click: function($event) {
+                                          return _vm.goToFix(error.id)
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    Fix\n                                "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ])
+                          : _vm._e()
                       ]
                     )
                   }),
@@ -23732,7 +23937,7 @@ var staticRenderFns = [
           { staticClass: "flex justify-center py-10 text-lg text-purple-900" },
           [
             _vm._v(
-              "\n                                No Exceptions Found\n                            "
+              "\n                                No Errors Found\n                            "
             )
           ]
         )
@@ -23794,7 +23999,7 @@ var render = function() {
                 "border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md",
               attrs: {
                 type: "text",
-                placeholder: "'message, code, file, line..."
+                placeholder: "message, code, file, line..."
               },
               domProps: { value: _vm.search },
               on: {

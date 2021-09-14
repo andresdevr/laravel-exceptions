@@ -1,9 +1,19 @@
 <template>
      <div class="">
-      <div class="px-5 bg-purple-exception-300 text-gray-900 rounded-t-md text-sm border shadow-md border-purple-exception-400 py-8 mb-5">
-            <p class="mb-1 text-gray-900 font-semibold">
-                {{ exceptionFormatted.full_message ? exceptionFormatted.full_message : exceptionFormatted.message }}
-            </p>
+        <div class="px-5 bg-purple-exception-300 text-gray-900 rounded-t-md text-sm border shadow-md border-purple-exception-400 py-8 mb-5">
+            <div class="flex justify-center">
+                <div class="text-lg">
+                    <b> File: </b> {{ exceptionFormatted.file }} <b> on line</b> {{ exceptionFormatted.line }}
+                </div>
+            </div>
+            <div class="text-xl my-4">
+                <b>Error code: </b> {{ exceptionFormatted.code }}
+                <h1 class="my-2 text-2xl">
+                    <code>
+                        {{ exceptionFormatted.full_message ? exceptionFormatted.full_message : exceptionFormatted.message }}
+                    </code>
+                </h1>
+            </div>
         </div>
         <div class="py-3 px-5 bg-purple-exception-300 text-gray-900 rounded-t-md text-sm border shadow-md border-purple-exception-400">
             <div class="grid grid-cols-6 md:grid-cols-12 gap-2">
@@ -11,7 +21,7 @@
                     <label class="mr-4 text-purple-exception-800 mb-5" for="search">
                         Search
                     </label>
-                    <input type="text" v-model="search" class="border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md" placeholder="'message, code, file, line..." />
+                    <input type="text" v-model="search" class="border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md" placeholder="message, code, file, line..." />
                 </div>
                 <div class="col-span-3">
                     <label class="mr-4 text-purple-exception-800 mb-5" for="start_date">
@@ -87,6 +97,19 @@
                                 </button>
                             </th>
                             <th class="border border-purple-exception-400">
+                                <button class="px-4 py-2 w-full h-full text-left whitespace-nowrap" @click="order('created_at')">
+                                    Has been fixed
+                                    <span v-if="orderBy == 'created_at'">
+                                        <span v-if="sort == 'desc'">
+                                            &#8593;
+                                        </span>
+                                        <span v-if="sort == 'asc'">
+                                            &#8595;
+                                        </span>
+                                    </span>
+                                </button>
+                            </th>
+                            <th class="border border-purple-exception-400">
                                 
                             </th>
                             <th class="border border-purple-exception-400">
@@ -108,22 +131,38 @@
                                 </code>
                             </td>
                             <td class="px-4 py-3 border">
-                                {{ error.file }}
-                            </td>
-                            <td class="px-4 py-3 border text-right">
-                                {{ error.line }}
-                            </td>
-                            <td class="px-4 py-3 border text-right">
-                                {{ error.solutions_count }}
+                                {{ error.commit }}
                             </td>
                             <td class="px-4 py-3 border">
                                 {{ error.created_at }}
                             </td>
+                            <td class="px-4 py-3 border">
+                                <span>
+                                    {{ error.solution ? 'Yes' : 'No' }}
+                                </span>
+                            </td>
                             <td class="px-4 border">
                                 <div class="h-full w-full flex justify-center content-center">
-                                    <a :href="indexRoute + '/' + error.id" class="px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
+                                    <a target="_blank" :href="indexRoute + '/' + error.id" class="px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
                                         See
                                     </a>
+                                </div>
+                            </td>
+                            <td class="px-4 border" :colspan="!error.solution ? '1' : '2'">
+                                <div class="h-full w-full flex justify-center content-center">
+                                    <a v-if="error.solution" @click="goToSolution(error.id, error.solution.id)" class="px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle"> 
+                                        See solution
+                                    </a>
+                                    <button v-else @click="fixError(error.id)" class="px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
+                                        Quick fix
+                                    </button>
+                                </div>
+                            </td>
+                            <td class="px-4 border" v-if="! error.solution ">
+                                <div class="h-full w-full flex justify-center content-center">
+                                    <button @click="goToFix(error.id)" class="px-4 py-1 rounded-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-30 align-middle">
+                                        Fix
+                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -161,6 +200,9 @@
 export default {
     props: {
         indexRoute: {
+            type: String
+        },
+        solutionCreateRoute: {
             type: String
         },
         exception: {
@@ -244,6 +286,16 @@ export default {
                 this.sort = 'desc';
             }
             this.orderBy = attribute;
+        },
+        fixError: async function(id) {
+            let response = axios.post(this.solutionCreateRoute + id + "/solutions");
+            this.getErrors();
+        },
+        goToFix: function(id) {
+            window.location.href = this.solutionCreateRoute + id + "/solutions/create";
+        },
+        goToSolution: function(errorId, solutionId) {
+            window.location.href = this.solutionCreateRoute + errorId + "/solutions/" + solutionId;
         }
     },
     watch: {

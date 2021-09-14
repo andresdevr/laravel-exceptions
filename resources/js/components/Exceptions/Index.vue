@@ -6,7 +6,7 @@
                     <label class="mr-4 text-purple-exception-800 mb-5" for="search">
                         Search
                     </label>
-                    <input type="text" v-model="search" class="border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md" placeholder="'message, code, file, line..." />
+                    <input type="text" v-model="search" class="border border-pink-exception-200 bg-gray-100 py-2 px-2 w-full outline-none focus:ring-2 focus:ring-pink-exception-400 rounded-md" placeholder="message, code, file, line..." />
                 </div>
                 <div class="col-span-3">
                     <label class="mr-4 text-purple-exception-800 mb-5" for="start_date">

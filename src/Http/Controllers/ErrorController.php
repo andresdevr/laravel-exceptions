@@ -6,6 +6,7 @@ use Andresdevr\LaravelExceptions\Interfaces\ErrorInterface;
 use Andresdevr\LaravelExceptions\Interfaces\ExceptionInterface;
 use Andresdevr\LaravelExceptions\Interfaces\ErrorsInterface;
 use Andresdevr\LaravelExceptions\Models\Error;
+use Andresdevr\LaravelExceptions\Models\Exception;
 use Illuminate\Http\Request;
 
 class ErrorController extends Controller
@@ -35,9 +36,10 @@ class ErrorController extends Controller
      * @param  \Andresdevr\LaravelExceptions\Interfaces\ExcepcionInterface
      * @return \Illuminate\Http\Response
      */
-    public function index(ExceptionInterface $exception)
+    public function index($exception)
     {
-        //
+        $exception = Exception::whereId($exception)->firstOrFail();
+        return $exception->errors()->select('id', 'exception_id', 'user_id', 'commit', 'created_at')->paginate();
     }
 
     /**
@@ -47,9 +49,15 @@ class ErrorController extends Controller
      * @param  \Andresdevr\LaravelExceptions\Interfaces\ErrorInterface $error
      * @return \Illuminate\Http\Response
      */
-    public function show(ExceptionInterface $exception, ErrorInterface $error)
+    public function show($exception, $error)
     {
-        //
+        $exception = Exception::whereId($exception)->firstOrFail(); 
+        $error = Error::whereId($error)->firstOrFail(); 
+        
+        return view('exceptions::errors.show')->with([
+            'exception' => $exception,
+            'error' => $error
+        ]);
     }
 
     /**
