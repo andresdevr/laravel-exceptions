@@ -27,20 +27,27 @@ public function register()
  }
 
 ```
+
+Publish the assets of the markdown editor with the command
+```bash
+php artisan vendor:publish --tag=exceptions-assets 
+```
+
+You can configure Laravel Exceptions with
+```bash
+php artisan vendor:publish --tag=exceptions-config
+```
+
 You can access to the next routes to follow your exceptions
 
-| Method    | URI                                        | Name                      |
-|-----------|--------------------------------------------|---------------------------|
-| GET\|HEAD  | errors/{error}/solutions                   | errors.solutions.index    |
-| GET\|HEAD  | errors/{error}/solutions/create            | errors.solutions.create   |
-| GET\|HEAD  | errors/{error}/solutions/{solution}        | errors.solutions.show     |
-| GET\|HEAD  | errors/{error}/solutions/{solution}/edit   | errors.solutions.edit     |
+| Method     | URI                                        | Name                      |
+|------------|--------------------------------------------|---------------------------|
 | GET\|HEAD  | exceptions                                 | exceptions.index          |
 | GET\|HEAD  | exceptions/{exception}                     | exceptions.show           |
 | GET\|HEAD  | exceptions/{exception}/errors              | exceptions.errors.index   |
-| GET\|HEAD  | exceptions/{exception}/errors/create       | exceptions.errors.create  |
 | GET\|HEAD  | exceptions/{exception}/errors/{error}      | exceptions.errors.show    |
-| GET\|HEAD  | exceptions/{exception}/errors/{error}/edit | exceptions.errors.edit    |
+| GET\|HEAD  | errors/{error}/solutions/create            | errors.solutions.create   |
+| GET\|HEAD  | errors/{error}/solutions/{solution}        | errors.solutions.show     |
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

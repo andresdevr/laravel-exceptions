@@ -33,19 +33,25 @@ Route::name(config('laravel-exceptions.route-prefix-name'))
         Route::resource('exceptions', ExceptionController::class)->only([
             'index',
             'show',
-            'destroy'
         ]);
         /**
          * Route for errors
          * 
          * @return \Illuminate\Http\Response
          */
-        Route::resource('exceptions.errors', ErrorController::class);
+        Route::resource('exceptions.errors', ErrorController::class)->only([
+            'idex',
+            'show'
+        ]);
 
         /**
          * Route for solutions
          * 
          * @return \Illuminate\Http\Response
          */
-        Route::resource('errors.solutions', SolutionController::class);
+        Route::resource('errors.solutions', SolutionController::class)->only([
+            'create',
+            'store',
+            'show'
+        ]);
     });
