@@ -2800,6 +2800,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2807,10 +2828,67 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    createRoute: {
+      type: String
+    },
+    show: {
+      type: String
+    },
+    value: {
+      type: String,
+      "default": "Write your solution..."
+    }
+  },
   data: function data() {
     return {
-      solution: ""
+      solution: this.value,
+      canBeReplicated: "yes",
+      options: ['yes', 'no', 'maybe']
     };
+  },
+  mounted: function mounted() {
+    console.log(342);
+    this.solution = this.value;
+    console.log(this.solution);
+  },
+  methods: {
+    save: function () {
+      var _save = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var response;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.post(this.createRoute, {
+                  solution: this.solution,
+                  can_be_repicated: this.canBeReplicated
+                });
+
+              case 2:
+                response = _context.sent;
+                window.location.href = this.createRoute + "/" + response.data.id;
+
+              case 4:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function save() {
+        return _save.apply(this, arguments);
+      }
+
+      return save;
+    }()
+  },
+  computed: {
+    editable: function editable() {
+      return this.show == 'true';
+    }
   }
 });
 
@@ -24631,6 +24709,7 @@ var render = function() {
                     return _c(
                       "button",
                       {
+                        key: p,
                         staticClass:
                           "px-4 py-1 text-sm font-medium border focus:outline-none focus:ring transition border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-300 align-middle",
                         class: {
@@ -24732,6 +24811,7 @@ var render = function() {
     "div",
     [
       _c("mavon-editor", {
+        attrs: { language: "en-US", editable: _vm.editable },
         model: {
           value: _vm.solution,
           callback: function($$v) {
@@ -24739,7 +24819,68 @@ var render = function() {
           },
           expression: "solution"
         }
-      })
+      }),
+      _vm._v(" "),
+      _vm.editable
+        ? _c("div", { staticClass: "my-3 flex justify-end content-center" }, [
+            _c("span", { staticClass: "align-middle mr-1" }, [
+              _vm._v("\n            Can be replicated:\n        ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.canBeReplicated,
+                    expression: "canBeReplicated"
+                  }
+                ],
+                staticClass:
+                  "bg-transparent px-4 py-1 rounded-l-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-300 align-middle",
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.canBeReplicated = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              _vm._l(_vm.options, function(option) {
+                return _c("option", { key: option }, [
+                  _vm._v(
+                    "\n                " + _vm._s(option) + "\n            "
+                  )
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass:
+                  "px-4 py-1 rounded-r-md text-sm font-medium border focus:outline-none focus:ring transition text-purple-exception-700 border-purple-exception-700 hover:text-white hover:bg-purple-exception-700 active:bg-purple-exception-800 focus:ring-pink-exception-300 align-middle",
+                on: {
+                  click: function($event) {
+                    return _vm.save()
+                  }
+                }
+              },
+              [_vm._v("\n            Save\n        ")]
+            )
+          ])
+        : _vm._e()
     ],
     1
   )

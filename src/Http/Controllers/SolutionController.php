@@ -65,7 +65,8 @@ class SolutionController extends Controller
     {
         $error = Error::whereId($error)->firstOrFail();
         $solution = $error->solution()->create([
-            'can_be_replicated' => Solution::NO
+            'can_be_replicated' => $request->has('can_be_replicated') ? $request->input('can_be_replicated') : Solution::YES,
+            'markdown_explanation' => $request->has('solution') ? $request->input('solution') : null
         ]);
 
         return $solution;
